@@ -1,0 +1,50 @@
+.insidecontainer{
+    margin: auto;
+    padding: 20px 30px 20px 20px;
+    background-image: url("../img/hospital.jpg");
+    background-color: #fff;
+    background-repeat: no-repeat;
+    width: 90%;
+    height: 750px;
+    background-position: center;
+    background-size: cover;
+    min-width: 1000px;
+}
+
+.insidecontainer-child{
+    display: inline-block;
+    width: 50%;
+    height: 700px;
+    padding: 20px 20px 20px 40px;
+    border: 30px solid #3eb8bd;
+    background-color: #fff;
+}
+
+/* form input{
+    width: 370px;
+    background-color: #cef7f8;
+    border: none;
+    height: 25px;
+} */
+
+.form-control{
+    height: 40px;
+    background-color: #cef7f8;
+}
+
+form button{
+    color: white;
+    background-color: #3eb8bd;
+    width: 80px;
+    height: 30px;
+    border: none;
+}
+
+form button:hover{
+    color: black;
+    background-color: #cef7f8;
+}
+
+.title{
+    text-align: center;
+}
