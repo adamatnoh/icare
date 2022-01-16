@@ -40,7 +40,7 @@ public class appointmentController extends HttpServlet {
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pass = "";
-        String query = "INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message) VALUES(?,?,?,?,?)";
+        String query = "INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink) VALUES(?,?,?,?,?,?,?)";
         
         try{
             Class.forName(driver); //2- Load & Register driver
@@ -57,12 +57,16 @@ public class appointmentController extends HttpServlet {
         String appointdepartment = request.getParameter("appointdepartment");
         String appointdoctor = request.getParameter("appointdoctor");
         String message = request.getParameter("message");
+        String appointmentType = request.getParameter("appointmentType");
+        String platform = request.getParameter("platform");
         
         st.setString(1, appointdate);
         st.setString(2, appointtime);
         st.setString(3, appointdepartment);
         st.setString(4, appointdoctor);
         st.setString(5,message);
+        st.setString(6,appointmentType);
+        st.setString(7,platform);
         
         
         int insertStatus=st.executeUpdate();
@@ -93,6 +97,8 @@ public class appointmentController extends HttpServlet {
             out.println("<p>Department: " + appointdepartment + "</p>");
             out.println("<p>Doctor: " + appointdoctor + "</p>");
             out.println("<p>Message: " + message + "</p>");
+            out.println("<p>type: " + appointmentType + "</p>");
+            out.println("<p>platform: " + platform + "</p>");
             out.println("</body>");
             out.println("</html>");
         }

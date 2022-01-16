@@ -42,7 +42,7 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                <li><a class="nav-link scrollto" href="Registration.jsp">Registration</a></li>
+                <li><a class="nav-link scrollto" href="registration.jsp">Registration</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -60,7 +60,7 @@
                         <form action="registrationController" method="post" name="registerform">
                             <label for="userType">User Type: </label>
                             <select name="userType">
-                                 <option value="patient">Patient</option>
+                                 <option value="guest">Guest</option>
                                  <option value="receptionist">Receptionist</option>
                             </select> </br></br>
                             <label for="name">Name</label><br>

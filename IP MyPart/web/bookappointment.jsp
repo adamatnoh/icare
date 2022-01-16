@@ -156,6 +156,7 @@
                         </div>
                     </div>
                     <br/>
+                    <input type="text" name="appointmentType" value="appointment" hidden/>
                   <div class="text-center"><button type="submit" name="submit" class="appointment-btn scrollto">Make an Appointment</button></div>
                 </form>
             </div>

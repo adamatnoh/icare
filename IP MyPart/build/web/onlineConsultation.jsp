@@ -142,12 +142,25 @@
                                 </select>
                             <!--input type="text" name="appointdoctor" class="form-control datepicker" id="appointdoctor" required-->
                         </div> 
+                                
+                        <div class="col-md-4 form-group mt-3">
+                            <label for="platform">Meeting Platform</label>
+                            <br/>
+                            <select name="platform" class="btn btn-success dropdown-toggle">   
+                                <option value="googleMeet">Google Meet</option>
+                                <option value="webex">Webex</option>
+                                <option value="zoom">Zoom</option>
+                                <option value="whatsapp">Whatsapp</option>
+                            </select>
+<!--                            <input type="text" name="platform" class="form-control" id="platform">-->
+                        </div> 
 
                         <div class="form-group mt-3">
                           <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
                         </div>
                     </div>
                     <br/>
+                    <input type="text" name="appointmentType" value="online" hidden/>
                   <div class="text-center"><button type="submit" name="submit" class="appointment-btn scrollto">Book Online Consultation</button></div>
                 </form>
             </div>

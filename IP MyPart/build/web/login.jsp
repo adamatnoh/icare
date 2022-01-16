@@ -38,19 +38,19 @@
     </head>
     <body>
         <!-- ======= Header ======= -->
-        <header id="header" class="fixed-top">
+        <header id="header">
             <div class="container d-flex align-items-center">
 
             <a href="index.html" class="logo me-auto"><img src="assets/img/icare.jpg" alt=""></a>
 
            <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                <li><a class="nav-link scrollto" href="Registration.jsp">Login</a></li>
+                <li><a class="nav-link scrollto" href="registration.jsp">Login</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
-            <a href="Registration.jsp" class="appointment-btn scrollto"><span class="d-none d-md-inline">Register</a>
+            <a href="registration.jsp" class="appointment-btn scrollto"><span class="d-none d-md-inline">Register</a>
 
             </div>
         </header>
@@ -68,9 +68,9 @@
                             
                             <form action="#" required>
                                  <select id="user" name="user">
-                                 <option value="patient">Patient</option>
-                                 <option value="doctor">Doctor</option>
-                                 <option value="clerk">Clerk</option>
+                                 <option value="guest">Guest</option>
+                                 <option value="receptionist">Receptionist</option>
+                                 <option value="admin">Admin</option>
                                  </select> </br></br>
         
                          
@@ -84,7 +84,7 @@
                             <button type="submit" name="submit" value="SIGN UP">LOGIN</button>
                         </form>
                         
-                        <div>New user? Click <a href="Registration.jsp">here.</a></div>
+                        <div>New user? Click <a href="registration.jsp">here.</a></div>
                         </center>
                     </div>
                 </div>
