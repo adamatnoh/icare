@@ -1,6 +1,11 @@
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%ResultSet resultset =null;%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +38,25 @@
         <link rel="stylesheet" href="assets/css/payment.css">
     </head>
     <body>
-                <!-- ======= Header ======= -->
+        <%
+        try{
+        String driver = "com.mysql.jdbc.Driver";
+        String dbName = "icare";
+        String url = "jdbc:mysql://localhost/" + dbName + "?";
+        String userName = "root";
+        String pass = "";
+       
+        Class.forName(driver); //2- Load & Register driver
+        
+        
+        Connection con = DriverManager.getConnection(url, userName, pass); 
+
+            Statement statement = con.createStatement() ;
+
+            resultset =statement.executeQuery("select * from appointment where appointmentID=41") ;//change later using session
+            resultset.next();
+        %>
+        <!-- ======= Header ======= -->
         <header id="header" >
             <div class="container d-flex align-items-center">
 
@@ -85,10 +108,10 @@
                         <hr>
                         <b>Online Consultation:</b>
                         <div class="detaill">
-                            <p>Date: 12/12/2021</p>
-                            <p>Consultant: Dr Muthu A/L Raj</p>
-                            <p>Time: 3:00 P.M.</p>
-                            <p>Platform: Google Meet</p>
+                            <p>Date: <%= resultset.getString(3) %></p>
+                            <p>Consultant: <%= resultset.getString(6) %></p>
+                            <p>Time: <%= resultset.getString(4) %></p>
+                            <p>Platform: <%= resultset.getString(7) %></p>
                         </div>
                         <br><br>
                         <hr>
@@ -96,24 +119,41 @@
                         <br><br>
                     </div>
                     <div class="childd boxx2">
-                        <b>Choose payment method:</b>
+                        <b>Pay using Credit/Debit cards:</b>
                         <br><br>
-                        <form action="">
-                            Credit / Debit cards:
+                        <form action="paymentController" method="post">
+                            <label for="cardNo">Card Number:</label>
                             <br>
-                            <button type="submit" name="submitcard">&plus;Add Card Detail</button>
-                        </form>
-                        <br><br>
-                        <form action="">
-                            Online banking via FPX:
+                            <input type="text" name="cardNo" class="form-control" required/>
+                            
                             <br>
-                            <img src="assets/img/fpx.png" alt="fpx"><br>
-                            <button type="submit" name="submitcard">Pay</button>
+                            <label for="cvv">CVV Number:</label>
+                            <br>
+                            <input type="text" name="cvv" class="form-control" required/>
+                            
+                            <br>
+                            <label for="expDate">Expiry Date:</label>
+                            <br>
+                            <input type="date" name="expDate" class="form-control datepicker" required/>
+                            
+                            <br><br>
+                            <input type="text" name="total" class="form-control" value="50" hidden/>
+                            
+                            <button type="submit" name="submit" class="appointment-btn scrollto">Make a payment</button>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
+        
+        <%
+
+            }
+            catch(Exception e)
+            {
+                 out.println("wrong entry"+e);
+            }
+        %>
         
         <!-- Vendor JS Files -->
         <script src="assets/vendor/aos/aos.js"></script>

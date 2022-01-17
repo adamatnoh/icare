@@ -24,6 +24,18 @@
         <servlet-name>reportController</servlet-name>
         <servlet-class>controller.reportController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>payment</servlet-name>
+        <servlet-class>controller.payment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>paymentServlet</servlet-name>
+        <servlet-class>controller.paymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>paymentController</servlet-name>
+        <servlet-class>controller.paymentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>appointmentController</servlet-name>
         <url-pattern>/appointmentController</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>reportController</servlet-name>
         <url-pattern>/reportController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>payment</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>paymentServlet</servlet-name>
+        <url-pattern>/paymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>paymentController</servlet-name>
+        <url-pattern>/paymentController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
