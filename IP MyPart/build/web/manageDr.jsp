@@ -72,7 +72,7 @@
 
         Statement statement = con.createStatement() ;
 
-        rs =statement.executeQuery("select * from doctor") ;
+        rs =statement.executeQuery("select doctor.*, department.* from doctor inner join department on doctor.departmentID=department.departmentID") ;
     %>
 
   <!-- ======= Header ======= -->
@@ -123,20 +123,24 @@
                     <td><%= rs.getString(1)%></td>
                     <td><%= rs.getString(2)%></td>
                     <td><%= rs.getString(3)%></td>
-                    <td><%= rs.getString(7)%></td>
+                    <td><%= rs.getString(9)%></td>
                     <td><%= rs.getString(4)%></td>
                     <td><%= rs.getString(5)%></td>
                     <%
                         if(rs.getString(6).contentEquals("yes"))
                     {%>
-                            <td><button>Available</button></td>
+                            <td><div style="color: green;">Available</div></td>
                     <%}
                         else
                     {%>
-                            <td><button style="background-color: red;">Not</button></td>
+                            <td><div style="color: red;">Not Available</div></td>
                     <% } %>
-                <form name="editDr" method="post" action="editDr">
+                <form name="editDr" method="post" action="drProfile.jsp">
                     <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
+                    <%
+                        session = request.getSession(true);
+                        session.setAttribute("drID", rs.getString(1));
+                    %>
                 </form>
                 </tr>
             <% } %>

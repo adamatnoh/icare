@@ -74,8 +74,11 @@
         Connection con = DriverManager.getConnection(url, userName, pass); 
 
         Statement statement = con.createStatement() ;
+        session = request.getSession(true);
+        String rid = (String)session.getAttribute("reportID");
+        String uid = (String)session.getAttribute("userID");
         
-        rs2 = statement.executeQuery("select * from user"); 
+        rs2 = statement.executeQuery("select * from user where userID ="+uid); 
         
         rs2.next();
     %>
@@ -133,7 +136,7 @@
           <b>Identity No:           </b><%= rs2.getString(4)%> <br><br>
           <b>Gender:                </b><%= rs2.getString(5)%> <br><br>
           <% 
-              rs = statement.executeQuery("select * from medicalreport");
+              rs = statement.executeQuery("select * from medicalreport where reportID="+rid);
               rs.next();   
           %>
           <b>Condition:             </b><%= rs.getString(5)%> <br><br>
