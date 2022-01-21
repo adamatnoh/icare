@@ -75,7 +75,7 @@
         rs =statement.executeQuery("select doctor.*, department.* from doctor inner join department on doctor.departmentID=department.departmentID") ;
     %>
 
-  <!-- ======= Header ======= -->
+        <!-- ======= Header ======= -->
         <header id="header" >
             <div class="container d-flex align-items-center">
 
@@ -85,7 +85,7 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                <li><a class="nav-link scrollto" href="#">Doctor</a></li>
+                <li><a class="nav-link scrollto" href="manageDr.jsp">Doctor</a></li>
                 <li><a class="nav-link scrollto" href="#">Department</a></li>
                 <li><a class="nav-link scrollto" href="login.html">Sign Out</a></li>
                 </ul>

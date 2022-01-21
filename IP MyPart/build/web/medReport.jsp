@@ -75,8 +75,8 @@
 
         Statement statement = con.createStatement() ;
         session = request.getSession(true);
-        String rid = (String)session.getAttribute("reportID");
-        String uid = (String)session.getAttribute("userID");
+        String rid = request.getParameter("reportID");
+        String uid = request.getParameter("userID");
         
         rs2 = statement.executeQuery("select * from user where userID ="+uid); 
         
@@ -93,33 +93,14 @@
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-            <li><a class="nav-link scrollto" href="appointmentHistory.html">Appointment</a></li>
             <li><a class="nav-link scrollto" href="profile.html">Profile</a></li>
-            <li class="dropdown"><a href="#"><span>Notification</span> <i class="bi bi-chevron-down"></i></a>
-                <ul>
-                    <li><a href="#"><img src="assets/img/bell.png" width="15px" style="display:block; float: left">UPCOMING EVENTS</a></li>
-                    <li class="dropdown"><a href="#"><span>Annual Check-ups</span> <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                        <li><a href="#">Appointment with<br>Dr Subramaniam<br>[1 January 2022,<br>8.00am - 10.30am]</a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <hr>
-                        <li><a href="#">Clear</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
             <li><a class="nav-link scrollto" href="login.html">Sign Out</a></li>
-            <li class="dropdown"><div class="appointment-btn scrollto"><span>Make an</span> Appointment<i class="bi bi-chevron-down"></i></div>
-                <ul>
-                    <li><a href="index.html"><span>Appointment</span></a></li>
-                    <li><a href="onlineConsultation.html"><span>Online Consultation</span></a></li>
-                </ul>
-            </li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
+
+        <a href="#appointmentconfirmation" class="appointment-btn scrollto"><span class="d-none d-md-inline">Appointment</span> Confirmation</a>
+
         </div>
     </header><!-- End Header -->
 

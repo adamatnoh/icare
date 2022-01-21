@@ -4,6 +4,7 @@
     Author     : adamn
 --%>
 
+<%@page import="java.time.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%ResultSet resultset =null;%>
@@ -66,8 +67,8 @@
         
         Connection con = DriverManager.getConnection(url, userName, pass); 
 
-            Statement statement = con.createStatement() ;
-            resultset =statement.executeQuery("select appointment.*, user.name, user.userID, medicalreport.reportID from medicalreport join appointment on (medicalreport.appointmentID=appointment.appointmentID) join user on (medicalreport.userID=user.userID) where status='finished'") ;     
+        Statement statement = con.createStatement() ;
+        resultset =statement.executeQuery("select appointment.*, user.name, user.userID, medicalreport.reportID, medicalreport.nextAppoint from medicalreport join appointment on (medicalreport.appointmentID=appointment.appointmentID) join user on (medicalreport.userID=user.userID) where status='finished'") ;     
         %>
 
         <!-- ======= Header ======= -->
@@ -82,19 +83,36 @@
                 <li><a class="nav-link scrollto" href="appointmentPatient.jsp">Appointment</a></li>
                 <li><a class="nav-link scrollto" href="profile.jsp">Profile</a></li>
                 <li class="dropdown"><a href="#"><span>Notification</span> <i class="bi bi-chevron-down"></i></a>
+                    <%
+                        resultset.next();
+                        String dt = resultset.getString(14);
+                        
+                        LocalDate date = Date.valueOf(dt).toLocalDate();
+                        LocalDate today = LocalDate.now(ZoneId.of("Asia/Kuala_Lumpur"));
+                        if (date.isAfter(today)) {
+                    %>
                     <ul>
                         <li><a href="#"><img src="assets/img/bell.png" width="15px" style="display:block; float: left">UPCOMING EVENTS</a></li>
-                        <li class="dropdown"><a href="#"><span>Annual Check-ups</span> <i class="bi bi-chevron-right"></i></a>
+                        <li class="dropdown"><a href="#"><span>Appointment</span> <i class="bi bi-chevron-right"></i></a>
                             <ul>
-                            <li><a href="#">Appointment with<br>Dr Subramaniam<br>[1 January 2022,<br>8.00am - 10.30am]</a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <hr>
-                            <li><a href="#">Clear</a></li>
+                                <li><a href="medReport.jsp?reportID=<%= resultset.getString(13)%>&userID=<%= resultset.getString(12)%>"><span style="font-size:12px;">Appointment with<br><%= resultset.getString(6)%><br>[<%= resultset.getString(14)%>, <%= resultset.getString(4)%>]</span></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <hr>
+                                <li><a href="#">Clear</a></li>
                             </ul>
                         </li>
                     </ul>
+                    <% 
+                        }
+                        else{
+                    %>
+                    <ul>
+                        <li><a href="#"><img src="assets/img/bell.png" width="15px" style="display:block; float: left">UPCOMING EVENTS</a></li>
+                        <li class="dropdown"><a href="#"><span>No upcoming events</span> <i class="bi bi-chevron-right"></i></a></li>
+                    </ul>
+                    <% } %>
                 </li>
                 <li><a class="nav-link scrollto" href="login.html">Sign Out</a></li>
                 <li class="dropdown"><div class="appointment-btn scrollto"><span>Make an</span> Appointment<i class="bi bi-chevron-down"></i></div>
@@ -133,7 +151,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%  while(resultset.next()){ %>
+                    <%  
+                        resultset =statement.executeQuery("select appointment.*, user.name, user.userID, medicalreport.reportID, medicalreport.nextAppoint from medicalreport join appointment on (medicalreport.appointmentID=appointment.appointmentID) join user on (medicalreport.userID=user.userID) where status='finished'") ;
+                        while(resultset.next()){ 
+                    %>
                     <tr>
                     <th scope="row"><%= nombor++ %></th>
                         <td><%= resultset.getString(11)%></td>
@@ -144,11 +165,8 @@
                         <td><%= resultset.getString(6)%></td>
                         <form name="editDr" method="post" action="medReport.jsp">
                             <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                            <%
-                                session = request.getSession(true);
-                                session.setAttribute("reportID", resultset.getString(13));
-                                session.setAttribute("userID", resultset.getString(12));
-                            %>
+                            <input type="hidden" id="reportID" name="reportID" value=<%= resultset.getString(13)%>>
+                            <input type="hidden" id="userID" name="userID" value=<%= resultset.getString(12)%>>
                         </form>
                     <% } %>                
                     </tr>
