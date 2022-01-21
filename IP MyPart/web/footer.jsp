@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : Jan 19, 2022, 12:52:31 AM
-    Author     : hasifhafifi
+    Document   : footer
+    Created on : Jan 22, 2022, 4:06:25 AM
+    Author     : adamn
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,41 +35,31 @@
       <!-- Template Main CSS File -->
       <link href="assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
+      
+      <style>
+          footer{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+          }
+      </style>
+      
     </head>
     <body>
-        <% 
-           Integer id =  (Integer) session.getAttribute("userLoginID"); 
-           Integer loggedIn =  (Integer) session.getAttribute("loggedIn");
-        %>
-        <%= id %>
-        <%
-            if(loggedIn != null)
-            {
-        %>
-        
-        <%@include file="navbar_guest.jsp" %>
-        
-        <h1>INDEX PAGE</h1>
-        
-        <%
-            }
-            else{
-                RequestDispatcher rd  = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
-            }
-        %>
-          
-        <%@include file="footer.jsp" %>
+            <!-- ======= Footer ======= -->
+            <footer id="footer">
+              <div class="container">
+                <div class="copyright">
+                  &copy; Copyright <strong><span>iCare</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                  Designed by <a href="">IP Man</a>
+                </div>
+              </div>
+            </footer><!-- End Footer -->
 
-        <!-- Vendor JS Files -->
-        <script src="assets/vendor/aos/aos.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="assets/vendor/php-email-form/validate.js"></script>
-        <script src="assets/vendor/purecounter/purecounter.js"></script>
-        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-        <!-- Template Main JS File -->
-        <script src="assets/js/main.js"></script>
+            <div id="preloader"></div>
+            <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     </body>
 </html>
+

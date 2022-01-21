@@ -4,7 +4,10 @@
     Author     : hasifhafifi
 --%>
 
+<%@page import="java.time.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+<%ResultSet resultsett =null;%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,30 +44,61 @@
         <header id="header" >
             <div class="container d-flex align-items-center">
 
-            <a href="index.html" class="logo me-auto"><img src="assets/img/icare.jpg" alt=""></a>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+            <a href="index.jsp" class="logo me-auto"><img src="assets/img/icare.jpg" alt=""></a>
+
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                 <li><a class="nav-link scrollto" href="appointmentPatient.jsp">Appointment</a></li>
                 <li><a class="nav-link scrollto" href="profile.jsp">Profile</a></li>
                 <li class="dropdown"><a href="#"><span>Notification</span> <i class="bi bi-chevron-down"></i></a>
+                    <%
+                        try{
+                        String drive = "com.mysql.jdbc.Driver";
+                        String dbNam = "icare";
+                        String ur = "jdbc:mysql://localhost/" + dbNam + "?";
+                        String userNam = "root";
+                        String pas = "";
+                        
+                        Integer uid = (Integer) session.getAttribute("userLoginID");
+                        
+                        Class.forName(drive); //2- Load & Register driver
+
+                        Connection co = DriverManager.getConnection(ur, userNam, pas); 
+
+                        Statement statementt = co.createStatement() ;   
+                        
+                        resultsett =statementt.executeQuery("select appointment.*, user.name, user.userID, medicalreport.reportID, medicalreport.nextAppoint from medicalreport join appointment on (medicalreport.appointmentID=appointment.appointmentID) join user on (medicalreport.userID=user.userID) where status='finished' and user.userID="+uid) ;
+                        resultsett.next();
+                        String dt = resultsett.getString(14);
+                        
+                        LocalDate date = Date.valueOf(dt).toLocalDate();
+                        LocalDate today = LocalDate.now(ZoneId.of("Asia/Kuala_Lumpur"));
+                        if (date.isAfter(today)) {
+                    %>
                     <ul>
                         <li><a href="#"><img src="assets/img/bell.png" width="15px" style="display:block; float: left">UPCOMING EVENTS</a></li>
-                        <li class="dropdown"><a href="#"><span>Annual Check-ups</span> <i class="bi bi-chevron-right"></i></a>
+                        <li class="dropdown"><a href="#"><span>Appointment</span> <i class="bi bi-chevron-right"></i></a>
                             <ul>
-                            <li><a href="#">Appointment with<br>Dr Subramaniam<br>[1 January 2022,<br>8.00am - 10.30am]</a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <hr>
-                            <li><a href="#">Clear</a></li>
+                                <li><a href="medReport.jsp?reportID=<%= resultsett.getString(13)%>&userID=<%= resultsett.getString(12)%>"><span style="font-size:12px;">Appointment with<br><%= resultsett.getString(6)%><br>[<%= resultsett.getString(14)%>, <%= resultsett.getString(4)%>]</span></a></li>
+                                <%  while(resultsett.next()){ %>
+                                <hr>
+                                <li><a href="medReport.jsp?reportID=<%= resultsett.getString(13)%>&userID=<%= resultsett.getString(12)%>"><span style="font-size:12px;">Appointment with<br><%= resultsett.getString(6)%><br>[<%= resultsett.getString(14)%>, <%= resultsett.getString(4)%>]</span></a></li>
+                                <% } %>
                             </ul>
                         </li>
                     </ul>
+                    <% 
+                        }
+                        else{
+                    %>
+                    <ul>
+                        <li><a href="#"><img src="assets/img/bell.png" width="15px" style="display:block; float: left">UPCOMING EVENTS</a></li>
+                        <li class="dropdown"><a href="#"><span>No upcoming events</span> <i class="bi bi-chevron-right"></i></a></li>
+                    </ul>
+                    <% } %>
                 </li>
-                <li><a class="nav-link scrollto" href="signOutController">Sign Out</a></li>
+                <li><a class="nav-link scrollto" href="login.html">Sign Out</a></li>
                 <li class="dropdown"><div class="appointment-btn scrollto"><span>Make an</span> Appointment<i class="bi bi-chevron-down"></i></div>
                     <ul>
                         <li><a href="bookappointment.jsp"><span>Appointment</span></a></li>
@@ -76,5 +110,13 @@
             </nav><!-- .navbar -->
             </div>
         </header><!-- End Header -->
+        <%
+
+        }
+        catch(Exception e)
+        {
+             out.println("Error: "+e);
+        }
+%>
     </body>
 </html>

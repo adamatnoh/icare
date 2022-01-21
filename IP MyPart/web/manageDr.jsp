@@ -141,7 +141,9 @@
              out.println("wrong entry "+e);
         } 
   %>
-        
+   
+  <%@include file="footer.jsp" %>
+  
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

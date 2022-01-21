@@ -75,16 +75,24 @@
 
         Statement statement = con.createStatement() ;
         session = request.getSession(true);
-        String rid = request.getParameter("reportID");
-        String uid = request.getParameter("userID");
+        String reportid = request.getParameter("reportID");
+        String userid = request.getParameter("userID");
         
-        rs2 = statement.executeQuery("select * from user where userID ="+uid); 
+        rs2 = statement.executeQuery("select * from user where userID ="+userid); 
         
         rs2.next();
     %>
 
-    <%@include file="navbar_guest.jsp" %>
-
+    <% 
+        if((Integer)session.getAttribute("userLoginID")==1){ 
+    %>
+        <%@include file="navbar_guest.jsp" %>
+    <% 
+        }else{
+    %>
+        <%@include file="navbar_admin.jsp" %>
+    <% } %>    
+        
   <!-- ======= Frequently Asked Questioins Section ======= -->
   <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
@@ -98,7 +106,7 @@
           <b>Identity No:           </b><%= rs2.getString(4)%> <br><br>
           <b>Gender:                </b><%= rs2.getString(5)%> <br><br>
           <% 
-              rs = statement.executeQuery("select * from medicalreport where reportID="+rid);
+              rs = statement.executeQuery("select * from medicalreport where reportID="+reportid);
               rs.next();   
           %>
           <b>Condition:             </b><%= rs.getString(5)%> <br><br>
@@ -121,6 +129,8 @@
              out.println("wrong entry "+e);
         } 
   %>
+  
+  <%@include file="footer.jsp" %>
   
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>

@@ -59,7 +59,7 @@
             }
         %>
           
-
+        <%@include file="footer.jsp" %>
 
         <!-- Vendor JS Files -->
         <script src="assets/vendor/aos/aos.js"></script>
