@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>iCare | Pending</title>
+    <title>iCare | Pending Appointment</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -111,11 +111,16 @@
             <tr>
                 <td>10:00<br><span style="font-size: small; color: #3eb8bd;">10:30</span></td>
                 <td>15-01-2022</td>
-                <td><button type="submit" name="new" style="width:50px;">new</button>&nbsp&nbspTan Sri Abu Ali Bin Kassim</td>
+                <td>Tan Sri Abu Ali Bin Kassim</td>
                 <td>013-2225454</td>
                 <td>Stomach ache</td>
                 <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                <td><button type="submit" name="approve">Approve</button></td>
+                <td><form action="#" required>
+                                 <select id="user" name="user">
+                                 <option value="Approve">Approved</option>
+                                 <option value="Reject">Rejected</option>
+                                 <option value="Finish">Finished</option>
+                     </select> </br></td>
             </tr>
             <tr>
                 <td>9:00<br><span style="font-size: small; color: #3eb8bd;">9:30</span></td>
@@ -124,7 +129,12 @@
                 <td>013-543543</td>
                 <td>Rehab check-up</td>
                 <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                <td><button type="submit" name="reject" style="background-color: red;">Reject</button></td>
+                <td><form action="#" required>
+                                 <select id="user" name="user">
+                                 <option value="Approve">Approved</option>
+                                 <option value="Reject" selected>Rejected</option>
+                                 <option value="Finish">Finished</option>
+                     </select> </br></td>
             </tr>
             <tr>
                 <td>15:00<br><span style="font-size: small; color: #3eb8bd;">15:30</span></td>
@@ -133,7 +143,12 @@
                 <td>019-5756765</td>
                 <td>Influenza</td>
                 <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                <td><button type="submit" name="finish" style="background-color: green;">Finish</button></td>
+                <td><form action="#" required>
+                                 <select id="user" name="user">
+                                 <option value="Approve">Approved</option>
+                                 <option value="Reject">Rejected</option> 
+                                 <option value="Finish" selected>Finished</option>
+                     </select> </br></td>
             </tr>
         </table>
         
