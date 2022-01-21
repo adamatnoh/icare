@@ -45,7 +45,7 @@ public class appointmentController extends HttpServlet {
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pass = "";
-        String query = "INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink, userID) VALUES(?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink, userID,status) VALUES(?,?,?,?,?,?,?,?,?)";
         
         try{
             Class.forName(driver); //2- Load & Register driver
@@ -73,6 +73,7 @@ public class appointmentController extends HttpServlet {
         st.setString(6,appointmentType);
         st.setString(7,platform);
         st.setInt(8,userID);
+        st.setString(9,"Pending");
         
         int insertStatus=st.executeUpdate();
         //System.out.println(insertStatus + "row affected");//6- process result
@@ -89,21 +90,13 @@ public class appointmentController extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet appointmentController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<p>Appointment Date: " + appointdate + "</p>");
-            out.println("<p>Appointment Time: " + appointtime + "</p>");
-            out.println("<p>Department: " + appointdepartment + "</p>");
-            out.println("<p>Doctor: " + appointdoctor + "</p>");
-            out.println("<p>Message: " + message + "</p>");
-            out.println("<p>type: " + appointmentType + "</p>");
-            out.println("<p>platform: " + platform + "</p>");
-            out.println("<p>userID: " + userID + "</p>");
-            if(appointmentType.equals("online"))
+
+            if(appointmentType.equals("appointment"))
+            {
+                RequestDispatcher rd = request.getRequestDispatcher("appointmentPatient.jsp");
+                rd.include(request, response);
+            }
+            else if(appointmentType.equals("online"))
             {
                 Connection conn = DriverManager.getConnection(url, userName, pass); //3- Establish connection
                 Statement statement = conn.createStatement();

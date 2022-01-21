@@ -44,6 +44,8 @@
     <body>
         
         <%
+            
+            Integer id =  (Integer) session.getAttribute("userLoginID");
         try{
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
@@ -58,7 +60,7 @@
 
             Statement statement = con.createStatement() ;
 
-            resultset =statement.executeQuery("SELECT * FROM user WHERE userID ='1' ") ;
+            resultset =statement.executeQuery("SELECT * FROM user WHERE userID ="+id) ;
             
         %>
 

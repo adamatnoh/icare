@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/onlineConsultation.jsp</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/paymentController.java</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/index.jsp</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/signOutController.java</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/loginController.java</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/onlinePayment.jsp</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/appointmentController.java</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/appointmentHistoryReceptionist.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/src/java/controller/loginController.java</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/login.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/index.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/bookappointment.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/pendingAppointment.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/appointmentHistoryPatient.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/profile.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/appointmentPatient.jsp</file>
         </group>
     </open-files>
 </project-private>
