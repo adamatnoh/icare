@@ -44,8 +44,6 @@
     <body>
         
         <%
-            
-            Integer id =  (Integer) session.getAttribute("userLoginID");
         try{
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
@@ -61,7 +59,7 @@
 
             Statement statement = con.createStatement() ;
 
-            resultset =statement.executeQuery("SELECT * FROM appointment WHERE status!='finished' AND userID="+id) ;
+            resultset =statement.executeQuery("SELECT * FROM appointment WHERE status!='finished' AND userID=1  ") ;
             
         %>
 

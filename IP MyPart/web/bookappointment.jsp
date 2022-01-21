@@ -134,7 +134,7 @@
                             <select name="appointdepartment" class="btn btn-success dropdown-toggle">  
                                 <%  while(resultset.next()){ %>
                                     <option><%= resultset.getString(2)%></option> <!--taking scnd column in table-->
-                                <% } resultDr =statement.executeQuery("select * from doctor WHERE availability=='Yes' ") ;%>
+                                <% } resultDr =statement.executeQuery("select * from doctor") ;%>
                             </select>
                             
                             <!--input type="text" name="appointdepartment" class="form-control datepicker" id="appointdepartment" required-->
