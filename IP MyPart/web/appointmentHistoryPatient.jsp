@@ -44,6 +44,8 @@
     <body>
         
         <%
+            
+            Integer id =  (Integer) session.getAttribute("userLoginID");
         try{
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
@@ -59,7 +61,7 @@
 
             Statement statement = con.createStatement() ;
 
-            resultset =statement.executeQuery("SELECT * FROM appointment WHERE status='finished' AND userID=1 ") ;
+            resultset =statement.executeQuery("SELECT * FROM appointment WHERE status='finished' AND userID="+id) ;
             
         %>
 
@@ -140,39 +142,7 @@
                            
                         </tbody>
                     </table>
-                            <!-- ======= Departments Section ======= -->
-                             
-    <section id="departments" class="departments">
-       
-      <div class="container" data-aos="fade-up">  
-        <div class="row" data-aos="fade-up" data-aos-delay="100">  
-          <div class="col-lg-4 mb-5 mb-lg-0">     
-            <ul class="nav nav-tabs flex-column">
-                <%  while(resultset.next()){ %>
-              <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-                  <h4><%= resultset.getString(2)%></h4>
-                  <p><%= resultset.getString(3)%>  </p>
-                </a>
-              </li>
-              <% } %>
-            </ul>
-          </div>
-          <div class="col-lg-8">
-            <div class="tab-content">
-              <div class="tab-pane active show" id="tab-1">
-                <h3><%= resultset.getString(2)%></h3>
-                <p class="fst-italic">Time: <%= resultset.getString(4)%> </p>
-                <p>Department: <%= resultset.getString(5)%></p>
-                <p>Doctor: <%= resultset.getString(6)%> </p>
-                <p>Message: <%= resultset.getString(9)%> </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-             
-    </section><!-- End Departments Section -->
+
    
                          <a href="appointmentPatient.jsp" class="btn btn-secondary btn-sm active" type="button" >Back</a>
                     </div>
