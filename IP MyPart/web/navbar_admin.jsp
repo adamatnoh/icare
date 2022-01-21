@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Jan 19, 2022, 12:52:31 AM
+    Document   : navbar_admin
+    Created on : Jan 22, 2022, 1:15:58 AM
     Author     : hasifhafifi
 --%>
 
@@ -37,39 +37,23 @@
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
     </head>
     <body>
-        <% 
-           Integer id =  (Integer) session.getAttribute("userLoginID"); 
-           Integer loggedIn =  (Integer) session.getAttribute("loggedIn");
-        %>
-        <%= id %>
-        <%
-            if(loggedIn != null)
-            {
-        %>
-        
-        <%@include file="navbar_guest.jsp" %>
-        
-        <h1>INDEX PAGE</h1>
-        
-        <%
-            }
-            else{
-                RequestDispatcher rd  = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
-            }
-        %>
-          
+        <!-- ======= Header ======= -->
+        <header id="header" >
+            <div class="container d-flex align-items-center">
 
+            <a href="index.html" class="logo me-auto"><img src="assets/img/icare.jpg" alt=""></a>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 
-        <!-- Vendor JS Files -->
-        <script src="assets/vendor/aos/aos.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="assets/vendor/php-email-form/validate.js"></script>
-        <script src="assets/vendor/purecounter/purecounter.js"></script>
-        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-        <!-- Template Main JS File -->
-        <script src="assets/js/main.js"></script>
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                <li><a class="nav-link scrollto" href="#">Doctor</a></li>
+                <li><a class="nav-link scrollto" href="#">Department</a></li>
+                <li><a class="nav-link scrollto" href="signOutController">Sign Out</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+            </div>
+        </header><!-- End Header -->
     </body>
 </html>

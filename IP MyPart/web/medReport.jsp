@@ -83,26 +83,7 @@
         rs2.next();
     %>
 
-    <!-- ======= Header ======= -->
-    <header id="header" >
-        <div class="container d-flex align-items-center">
-
-        <a href="index.html" class="logo me-auto"><img src="assets/img/icare.jpg" alt=""></a>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
-
-        <nav id="navbar" class="navbar order-last order-lg-0">
-            <ul>
-            <li><a class="nav-link scrollto" href="profile.html">Profile</a></li>
-            <li><a class="nav-link scrollto" href="login.html">Sign Out</a></li>
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-
-        <a href="#appointmentconfirmation" class="appointment-btn scrollto"><span class="d-none d-md-inline">Appointment</span> Confirmation</a>
-
-        </div>
-    </header><!-- End Header -->
+    <%@include file="navbar_guest.jsp" %>
 
   <!-- ======= Frequently Asked Questioins Section ======= -->
   <section id="faq" class="faq section-bg">

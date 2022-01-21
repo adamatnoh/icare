@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -84,24 +85,8 @@ public class registrationController extends HttpServlet {
         user.setMobile(mobile);
         user.setPassword(password);
         
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet registrationController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<p>userType " + userType + "</p>");
-            out.println("<p>name " + name + "</p>");
-            out.println("<p>address " + address + "</p>");
-            out.println("<p>email " + email + "</p>");
-            out.println("<p>mobile " + mobile + "</p>");
-            out.println("<p>password " + password + "</p>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+        rd.forward(request, response);
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

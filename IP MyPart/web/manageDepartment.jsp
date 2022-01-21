@@ -60,24 +60,7 @@
  </head>
 
  <body>
-  <!-- ======= Header ======= -->
-        <header id="header" >
-            <div class="container d-flex align-items-center">
-
-            <a href="index.html" class="logo me-auto"><img src="assets/img/icare.jpg" alt=""></a>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
-
-            <nav id="navbar" class="navbar order-last order-lg-0">
-                <ul>
-                <li><a class="nav-link scrollto" href="#">Doctor</a></li>
-                <li><a class="nav-link scrollto" href="#">Department</a></li>
-                <li><a class="nav-link scrollto" href="login.html">Sign Out</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-            </div>
-        </header><!-- End Header -->
+        <%@include file="navbar_admin.jsp" %>
         
         </br></br>
         <div class="section-title">

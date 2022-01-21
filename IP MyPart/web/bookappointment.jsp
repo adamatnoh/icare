@@ -63,45 +63,7 @@
             
         %>
 
-        <!-- ======= Header ======= -->
-        <header id="header" >
-            <div class="container d-flex align-items-center">
-
-            <a href="index.html" class="logo me-auto"><img src="assets/img/icare.jpg" alt=""></a>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
-
-            <nav id="navbar" class="navbar order-last order-lg-0">
-                <ul>
-                <li><a class="nav-link scrollto" href="appointmentPatient.jsp">Appointment</a></li>
-                <li><a class="nav-link scrollto" href="profile.jsp">Profile</a></li>
-                <li class="dropdown"><a href="#"><span>Notification</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="#"><img src="assets/img/bell.png" width="15px" style="display:block; float: left">UPCOMING EVENTS</a></li>
-                        <li class="dropdown"><a href="#"><span>Annual Check-ups</span> <i class="bi bi-chevron-right"></i></a>
-                            <ul>
-                            <li><a href="#">Appointment with<br>Dr Subramaniam<br>[1 January 2022,<br>8.00am - 10.30am]</a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <hr>
-                            <li><a href="#">Clear</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a class="nav-link scrollto" href="login.html">Sign Out</a></li>
-                <li class="dropdown"><div class="appointment-btn scrollto"><span>Make an</span> Appointment<i class="bi bi-chevron-down"></i></div>
-                    <ul>
-                        <li><a href="bookappointment.jsp"><span>Appointment</span></a></li>
-                        <li><a href="onlineConsultation.jsp"><span>Online Consultation</span></a></li>
-                    </ul>
-                </li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-            </div>
-        </header><!-- End Header -->
+        <%@include file="navbar_guest.jsp" %>
          
         <!-- ======= Appointment Section ======= -->
         <section id="appointment" class="appointment section-bg">

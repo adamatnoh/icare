@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -94,6 +95,8 @@ public class paymentController extends HttpServlet {
             out.println("<h1>card no: "+expDate+"</h1>");
             out.println("<h1>card no: "+total+"</h1>");
             out.println("<h1>card no: "+appointmentID+"</h1>");
+            RequestDispatcher rd = request.getRequestDispatcher("appointmentPatient.jsp");
+            rd.include(request, response);
             out.println("</body>");
             out.println("</html>");
         }
