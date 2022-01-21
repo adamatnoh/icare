@@ -38,6 +38,9 @@
         <link rel="stylesheet" href="assets/css/payment.css">
     </head>
     <body>
+        <% Integer id =  (Integer) session.getAttribute("userLoginID"); %>
+        <% Integer appointmentID =  (Integer) session.getAttribute("appointmentID"); %>
+        <%= appointmentID %>
         <%
         try{
         String driver = "com.mysql.jdbc.Driver";
@@ -53,7 +56,7 @@
 
             Statement statement = con.createStatement() ;
 
-            resultset =statement.executeQuery("select * from appointment where appointmentID=41") ;//change later using session
+            resultset =statement.executeQuery("select * from appointment where appointmentID=\'"+appointmentID+"\'") ;//change later using session
             resultset.next();
         %>
         <!-- ======= Header ======= -->

@@ -36,6 +36,14 @@
         <servlet-name>paymentController</servlet-name>
         <servlet-class>controller.paymentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loginController</servlet-name>
+        <servlet-class>controller.loginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>signOutController</servlet-name>
+        <servlet-class>controller.signOutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>appointmentController</servlet-name>
         <url-pattern>/appointmentController</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>paymentController</servlet-name>
         <url-pattern>/paymentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginController</servlet-name>
+        <url-pattern>/loginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>signOutController</servlet-name>
+        <url-pattern>/signOutController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

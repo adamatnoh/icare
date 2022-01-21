@@ -62,26 +62,23 @@
                     <div class="insidecontainer-child">
                         <h2 class="title">WELCOME TO iCare!</h2>
                         <br>
-                        <form action="registrationController" method="post" name="registerform">
+                        <form action="loginController" method="post">
         
                             <label for="name">Login as:</label>
-                            
-                            <form action="#" required>
-                                 <select id="user" name="user">
-                                 <option value="guest">Guest</option>
-                                 <option value="receptionist">Receptionist</option>
-                                 <option value="admin">Admin</option>
-                                 </select> </br></br>
-        
+                            <select id="user" name="userType">
+                            <option value="guest">Guest</option>
+                            <option value="receptionist">Receptionist</option>
+                            <option value="admin">Admin</option>
+                            </select> </br></br>
                          
-                            <label for="email">Username</label><br>
-                            <input type="email" name="name" class="form-control" required/><br>
+                            <label for="email">Email</label><br>
+                            <input type="email" name="email" class="form-control" required/><br>
     
                             <label for="password">Password</label><br>
                             <input type="password" name="password" class="form-control"  required/><br>
         
                             <center>
-                            <button type="submit" name="submit" value="SIGN UP">LOGIN</button>
+                            <button type="submit" name="submit" value="Login">LOGIN</button>
                         </form>
                         
                         <div>New user? Click <a href="registration.jsp">here.</a></div>

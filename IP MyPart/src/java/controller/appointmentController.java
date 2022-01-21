@@ -10,10 +10,12 @@ import java.sql.*;//1-import package
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.appointment;
 
 /**
@@ -35,12 +37,15 @@ public class appointmentController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
+        HttpSession session = request.getSession(true);
+        Integer userID =  (Integer) session.getAttribute("userLoginID");
+        
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pass = "";
-        String query = "INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink) VALUES(?,?,?,?,?,?,?)";
+        String query = "INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink, userID) VALUES(?,?,?,?,?,?,?,?)";
         
         try{
             Class.forName(driver); //2- Load & Register driver
@@ -67,7 +72,7 @@ public class appointmentController extends HttpServlet {
         st.setString(5,message);
         st.setString(6,appointmentType);
         st.setString(7,platform);
-        
+        st.setInt(8,userID);
         
         int insertStatus=st.executeUpdate();
         //System.out.println(insertStatus + "row affected");//6- process result
@@ -81,8 +86,6 @@ public class appointmentController extends HttpServlet {
         appointment.setAppointmentDepartment(appointdepartment);
         appointment.setAppointmentDr(appointdoctor);
         appointment.setMessage(message);
-        
-        
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -99,6 +102,18 @@ public class appointmentController extends HttpServlet {
             out.println("<p>Message: " + message + "</p>");
             out.println("<p>type: " + appointmentType + "</p>");
             out.println("<p>platform: " + platform + "</p>");
+            out.println("<p>userID: " + userID + "</p>");
+            if(appointmentType.equals("online"))
+            {
+                Connection conn = DriverManager.getConnection(url, userName, pass); //3- Establish connection
+                Statement statement = conn.createStatement();
+                ResultSet rs =statement.executeQuery("SELECT * FROM appointment WHERE appointmentType=\'"+appointmentType+"\' AND appointmentDate=\'"+appointdate+"\' AND userID=\'"+userID+"\' AND appointmentTime=\'"+appointtime+"\'");
+                rs.next();
+                session.setAttribute("appointmentID", rs.getInt(1));
+                
+                RequestDispatcher rd = request.getRequestDispatcher("onlinePayment.jsp");
+                rd.include(request, response);
+            }
             out.println("</body>");
             out.println("</html>");
         }

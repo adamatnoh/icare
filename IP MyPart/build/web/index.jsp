@@ -1,8 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<%-- 
+    Document   : index
+    Created on : Jan 19, 2022, 12:52:31 AM
+    Author     : hasifhafifi
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
-      <meta charset="utf-8">
+        <meta charset="utf-8">
       <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
       <title>iCare</title>
@@ -29,14 +35,18 @@
       <!-- Template Main CSS File -->
       <link href="assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
-
-
     </head>
-
-<body>
-
-
- <!-- ======= Header ======= -->
+    <body>
+        <% 
+           Integer id =  (Integer) session.getAttribute("userLoginID"); 
+           Integer loggedIn =  (Integer) session.getAttribute("loggedIn");
+        %>
+        <%= id %>
+        <%
+            if(loggedIn != null)
+            {
+        %>
+         <!-- ======= Header ======= -->
         <header id="header" >
             <div class="container d-flex align-items-center">
 
@@ -63,7 +73,7 @@
                         </li>
                     </ul>
                 </li>
-                <li><a class="nav-link scrollto" href="login.html">Sign Out</a></li>
+                <li><a class="nav-link scrollto" href="signOutController">Sign Out</a></li>
                 <li class="dropdown"><div class="appointment-btn scrollto"><span>Make an</span> Appointment<i class="bi bi-chevron-down"></i></div>
                     <ul>
                         <li><a href="bookappointment.jsp"><span>Appointment</span></a></li>
@@ -75,29 +85,28 @@
             </nav><!-- .navbar -->
             </div>
         </header><!-- End Header -->
-
-  <h1>INDEX PAGE</h1>
+        
+        <h1>INDEX PAGE</h1>
+        
+        <%
+            }
+            else{
+                RequestDispatcher rd  = request.getRequestDispatcher("login.jsp");
+                rd.forward(request, response);
+            }
+        %>
           
 
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script src="assets/vendor/purecounter/purecounter.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
+        <!-- Template Main JS File -->
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>
-<br/>
-
-
-        
-        
-                            
-
-
