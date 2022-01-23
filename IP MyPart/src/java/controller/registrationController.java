@@ -38,7 +38,6 @@ public class registrationController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
@@ -85,8 +84,10 @@ public class registrationController extends HttpServlet {
         user.setMobile(mobile);
         user.setPassword(password);
         
-        RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-        rd.forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

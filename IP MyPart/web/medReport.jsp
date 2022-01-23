@@ -35,7 +35,6 @@
     <link href="assets/css/style.css" rel="stylesheet">
     
     <style>
-
         .bungkus
         {
           width: auto;
@@ -44,17 +43,6 @@
           border-radius: 9px;
           padding: 30px;
         }
-
-        #button
-        {
-          position: absolute; 
-          bottom: 10px; 
-          right: 20px;
-          color: white;
-          background-color: black;
-          border-radius: 9px;
-        }
-        
     </style>
     
 </head>
@@ -88,10 +76,14 @@
     %>
         <%@include file="navbar_guest.jsp" %>
     <% 
+        }else if((Integer)session.getAttribute("userLoginID")==2) {
+    %>
+        <%@include file="navbar_receptionist.jsp" %>   
+    <% 
         }else{
     %>
         <%@include file="navbar_admin.jsp" %>
-    <% } %>    
+    <% } %> 
         
   <!-- ======= Frequently Asked Questioins Section ======= -->
   <section id="faq" class="faq section-bg">
@@ -104,7 +96,6 @@
         <div class="bungkus">
           <b>Name:                  </b><%= rs2.getString(3)%> <br><br>
           <b>Identity No:           </b><%= rs2.getString(4)%> <br><br>
-          <b>Gender:                </b><%= rs2.getString(5)%> <br><br>
           <% 
               rs = statement.executeQuery("select * from medicalreport where reportID="+reportid);
               rs.next();   

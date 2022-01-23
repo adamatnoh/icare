@@ -68,22 +68,23 @@
 
                         Statement statementt = co.createStatement() ;   
                         
-                        resultsett =statementt.executeQuery("select appointment.*, user.name, user.userID, medicalreport.reportID, medicalreport.nextAppoint from medicalreport join appointment on (medicalreport.appointmentID=appointment.appointmentID) join user on (medicalreport.userID=user.userID) where status='finished' and user.userID="+uid) ;
-                        resultsett.next();
-                        String dt = resultsett.getString(14);
-                        
-                        LocalDate date = Date.valueOf(dt).toLocalDate();
-                        LocalDate today = LocalDate.now(ZoneId.of("Asia/Kuala_Lumpur"));
-                        if (date.isAfter(today)) {
+                        resultsett = statementt.executeQuery("select * from appointment where status='pending' and userID="+uid) ;
+                        if(resultsett.next())
+                        {
+                            String dt = resultsett.getString(3);
+
+                            LocalDate date = Date.valueOf(dt).toLocalDate();
+                            LocalDate today = LocalDate.now(ZoneId.of("Asia/Kuala_Lumpur"));
+                            if (date.isAfter(today) && resultsett.getString(3)!= null) {
                     %>
                     <ul>
                         <li><a href="#"><img src="assets/img/bell.png" width="15px" style="display:block; float: left">UPCOMING EVENTS</a></li>
                         <li class="dropdown"><a href="#"><span>Appointment</span> <i class="bi bi-chevron-right"></i></a>
                             <ul>
-                                <li><a href="medReport.jsp?reportID=<%= resultsett.getString(13)%>&userID=<%= resultsett.getString(12)%>"><span style="font-size:12px;">Appointment with<br><%= resultsett.getString(6)%><br>[<%= resultsett.getString(14)%>, <%= resultsett.getString(4)%>]</span></a></li>
+                                <li><a href="appointmentPatient.jsp"><span style="font-size:12px;">Appointment with<br><%= resultsett.getString(6)%><br>[<%= resultsett.getString(3)%>, <%= resultsett.getString(4)%>]</span></a></li>
                                 <%  while(resultsett.next()){ %>
                                 <hr>
-                                <li><a href="medReport.jsp?reportID=<%= resultsett.getString(13)%>&userID=<%= resultsett.getString(12)%>"><span style="font-size:12px;">Appointment with<br><%= resultsett.getString(6)%><br>[<%= resultsett.getString(14)%>, <%= resultsett.getString(4)%>]</span></a></li>
+                                <li><a href="appointmentPatient.jsp"><span style="font-size:12px;">Appointment with<br><%= resultsett.getString(6)%><br>[<%= resultsett.getString(3)%>, <%= resultsett.getString(4)%>]</span></a></li>
                                 <% } %>
                             </ul>
                         </li>
@@ -96,9 +97,14 @@
                         <li><a href="#"><img src="assets/img/bell.png" width="15px" style="display:block; float: left">UPCOMING EVENTS</a></li>
                         <li class="dropdown"><a href="#"><span>No upcoming events</span> <i class="bi bi-chevron-right"></i></a></li>
                     </ul>
+                    <% }}else{ %>
+                    <ul>
+                        <li><a href="#"><img src="assets/img/bell.png" width="15px" style="display:block; float: left">UPCOMING EVENTS</a></li>
+                        <li class="dropdown"><a href="#"><span>No upcoming events</span> <i class="bi bi-chevron-right"></i></a></li>
+                    </ul>
                     <% } %>
                 </li>
-                <li><a class="nav-link scrollto" href="login.html">Sign Out</a></li>
+                <li><a class="nav-link scrollto" href="signOutController">Sign Out</a></li>
                 <li class="dropdown"><div class="appointment-btn scrollto"><span>Make an</span> Appointment<i class="bi bi-chevron-down"></i></div>
                     <ul>
                         <li><a href="bookappointment.jsp"><span>Appointment</span></a></li>

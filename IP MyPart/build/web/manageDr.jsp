@@ -36,11 +36,11 @@
     <style>
 
         table {
-        border-collapse: collapse;
+        border-collapse: collapse !important;
         }
 
         tr {
-        border-bottom: 1pt solid black;
+        border-bottom: 1pt solid black !important;
         }
 
         button{
@@ -48,7 +48,7 @@
             background-color: #3eb8bd;
             width: 80px;
             height: 30px;
-            border-radius: 9px;
+            border-radius: 9px !important;
         }
         
     </style>

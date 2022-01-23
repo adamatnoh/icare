@@ -38,7 +38,16 @@
       <link href="assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
 
-
+      <style>
+          button{
+            color: white;
+            background-color: #3eb8bd;
+            width: 80px;
+            height: 30px;
+            border-radius: 9px !important;
+          }
+      </style>
+      
     </head>
     
     <body>
@@ -54,13 +63,13 @@
         int nombor=1;
        
         Class.forName(driver); //2- Load & Register driver
-        
+        int a = (Integer) session.getAttribute("userLoginID");
         
         Connection con = DriverManager.getConnection(url, userName, pass); 
 
             Statement statement = con.createStatement() ;
 
-            resultset =statement.executeQuery("SELECT * FROM appointment WHERE status='finished' AND userID="+id) ;
+            resultset =statement.executeQuery("select appointment.*, user.name, user.userID, medicalreport.reportID, medicalreport.nextAppoint from medicalreport join appointment on (medicalreport.appointmentID=appointment.appointmentID) join user on (medicalreport.userID=user.userID) where appointment.status='finished' and user.userID="+a) ;
             
         %>
 
@@ -86,6 +95,7 @@
                                 <th scope="col">Department</th>
                                 <th scope="col">Doctor's Name</th>
                                 <th scope="col">Message</th>
+                                <th scope="col">Details</th>
 
                             </tr>
                         </thead>
@@ -99,6 +109,11 @@
                                 <td><%= resultset.getString(5)%></td>
                                 <td><%= resultset.getString(6)%></td>
                                 <td><%= resultset.getString(9)%></td>
+                                <form name="editDr" method="post" action="medReport.jsp">
+                                    <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
+                                    <input type="hidden" id="reportID" name="reportID" value=<%= resultset.getString(13)%>>
+                                    <input type="hidden" id="userID" name="userID" value=<%= resultset.getString(12)%>>
+                                </form>
                             <% } %>                
                             </tr>
                            

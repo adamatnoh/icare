@@ -45,15 +45,17 @@
             background-color: #3eb8bd;
             width: 80px;
             height: 30px;
-            border-radius: 9px;
+            border-radius: 9px !important;
           }
       </style>
 
     </head>
     
     <body>
-        
+
         <%
+        if((Integer)session.getAttribute("userLoginID")==3|(Integer)session.getAttribute("userLoginID")==2){    
+            
         try{
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
@@ -141,7 +143,16 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  
+    <% }else{ %>
+    <section id="appointmentPatient" class="appointmentPatient">
+          <div class="container">
+
+            <div class="section-title">
+              <h2>Sorry, you have no access to this page !</h2>
+            </div>
+          </div>
+    </section>
+    <% } %>
     </body>
 </html>
 

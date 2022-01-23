@@ -35,6 +35,17 @@
       <!-- Template Main CSS File -->
       <link href="assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
+    
+      <style>
+          .msg
+          {
+            text-align: center;
+            background-color: #3eb8bd;
+            color: white;
+            padding: 15px;
+          }
+      </style>
+    
     </head>
     <body>
         <% 
@@ -49,8 +60,14 @@
         
         <%@include file="navbar_guest.jsp" %>
         
+        <% 
+            String msg = request.getParameter("msg");
+            if("successful".equals(msg))
+            {
+        %>
+        <div class="msg">Data saved successfully!</div>
+        <% } %>
         <h1>INDEX PAGE</h1>
-        
         <%
             }
             else{

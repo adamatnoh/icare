@@ -75,9 +75,7 @@ public class doctorController extends HttpServlet {
         con.close();
 
         try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher rd = request.getRequestDispatcher("/index.html");           
-            rd.include(request, response);
-            out.println("Data saved successfully!");
+            response.sendRedirect ("index.jsp?msg=successful");
         }
     }
 

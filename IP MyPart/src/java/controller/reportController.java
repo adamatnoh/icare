@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.appointment;
 
 /**
@@ -35,6 +36,7 @@ public class reportController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true); 
         
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
@@ -42,14 +44,13 @@ public class reportController extends HttpServlet {
         String userName = "root";
         String pass = "";
 
-        String query = "INSERT INTO medicalreport(details, userID, subject, PCondition, nextAppoint, appointmentID) VALUES(?,?,?,?,?,?)";
-        
         try{
             Class.forName(driver); //2- Load & Register driver
         }catch(ClassNotFoundException ex){
             System.out.println("not found");
             Logger.getLogger(reportController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        String query = "INSERT INTO medicalreport(details, userID, subject, PCondition, nextAppoint, appointmentID) VALUES(?,?,?,?,?,?)";
         
         Connection con = DriverManager.getConnection(url, userName, pass); //3- Establish connection
         PreparedStatement st = con.prepareStatement(query);
@@ -68,26 +69,42 @@ public class reportController extends HttpServlet {
         st.setString(5, nextAppointmentDate);
         st.setString(6, appointmentID);
         
+        st.executeUpdate();
         
-        int insertStatus=st.executeUpdate();
-        System.out.println(insertStatus + "row affected");//6- process result
+        st.close();
         
-        st.close(); //7-close connection
+        Statement statementt = con.createStatement() ; 
+        
+        ResultSet rs =statementt.executeQuery("select * from appointment where userID="+userID) ;
+        rs.next();
+        
+        PreparedStatement st2 = con.prepareStatement("INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink, userID, status) VALUES(?,?,?,?,?,?,?,?,?)");
+        
+        String appointdate = request.getParameter("nxtApptD");
+        String appointtime = rs.getString(4);
+        String appointdepartment = rs.getString(5);
+        String appointdoctor = rs.getString(6);
+        String message = request.getParameter("details");
+        String appointmentType = "appointment";
+        String platform = null;
+        
+        st2.setString(1, appointdate);
+        st2.setString(2, appointtime);
+        st2.setString(3, appointdepartment);
+        st2.setString(4, appointdoctor);
+        st2.setString(5, message);
+        st2.setString(6, appointmentType);
+        st2.setString(7, platform);
+        st2.setInt(8, Integer.parseInt(userID));
+        st2.setString(9, "pending");
+        
+        st2.executeUpdate(); 
+        
+        st2.close(); //7-close connection
         con.close();
-        
-//        Appointment appointment = new Appointment();
-//        appointment.setAppointmentID(appointmentID);
-//        appointment.setAppointmentTime(appointtime);
-//        appointment.setAppointmentDepartment(appointdepartment);
-//        appointment.setAppointmentDr(appointdoctor);
-//        appointment.setMessage(message);
-//        
   
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");           
-            rd.include(request, response);
-            out.println("Data saved successfully!");
+            response.sendRedirect ("index.jsp?msg=successful");
         }
     }
 
