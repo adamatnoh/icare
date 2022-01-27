@@ -39,17 +39,7 @@ public class signOutController extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet signOutController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Succesfully logged out</h1>");
-            RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-            rd.include(request, response);
-            out.println("</body>");
-            out.println("</html>");
+            response.sendRedirect ("login.jsp?msg=successful");
         }
     }
 

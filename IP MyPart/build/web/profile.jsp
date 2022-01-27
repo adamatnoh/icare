@@ -45,7 +45,8 @@
         
         <%
             
-            Integer id =  (Integer) session.getAttribute("userLoginID");
+        Integer id =  (Integer) session.getAttribute("userLoginID");
+        Integer loginId =  (Integer) session.getAttribute("loggedIn");
         try{
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
@@ -63,8 +64,20 @@
             resultset =statement.executeQuery("SELECT * FROM user WHERE userID ="+id) ;
             
         %>
-
-        <%@include file="navbar_guest.jsp" %>
+        <% 
+        if(loginId==1){ 
+        %>
+            <%@include file="navbar_guest.jsp" %>
+        <% 
+            }else if(loginId==2) {
+        %>
+            <%@include file="navbar_receptionist.jsp" %>   
+        <% 
+            }else{
+        %>
+            <%@include file="navbar_admin.jsp" %>
+        <% } %> 
+        
         <%@include file="messageSuccess.jsp" %>
          
               <!-- ======= Contact Section ======= -->

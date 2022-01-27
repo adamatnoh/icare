@@ -55,7 +55,7 @@
 
         <%
         try{
-        if((Integer)session.getAttribute("loggedIn")==3|(Integer)session.getAttribute("loggedIn")==2){    
+        if((Integer)session.getAttribute("loggedIn")==2){    
             
         try{
         String driver = "com.mysql.jdbc.Driver";

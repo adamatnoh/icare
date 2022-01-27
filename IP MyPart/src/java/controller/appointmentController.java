@@ -93,8 +93,7 @@ public class appointmentController extends HttpServlet {
 
             if(appointmentType.equals("appointment"))
             {
-                RequestDispatcher rd = request.getRequestDispatcher("appointmentPatient.jsp");
-                rd.include(request, response);
+                response.sendRedirect ("appointmentPatient.jsp?msg=successful");
             }
             else if(appointmentType.equals("online"))
             {

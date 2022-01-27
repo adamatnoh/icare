@@ -48,8 +48,19 @@
             if(loggedIn != null)
             {
         %>
-        
-        <%@include file="navbar_guest.jsp" %>
+        <%
+        if(loggedIn==1){ 
+        %>
+            <%@include file="navbar_guest.jsp" %>
+        <% 
+            }else if(loggedIn==2) {
+        %>
+            <%@include file="navbar_receptionist.jsp" %>   
+        <% 
+            }else{
+        %>
+            <%@include file="navbar_admin.jsp" %>
+        <% } %>
         
         <%@include file="messageSuccess.jsp" %>
         <h1>INDEX PAGE</h1>

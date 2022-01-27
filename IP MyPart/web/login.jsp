@@ -55,7 +55,9 @@
             </div>
         </header>
         <!-- End Header -->
-
+        
+        <%@include file="messagesignout.jsp" %>
+        
         <section id="login">
             <div class="container d-flex align-items-center">
                 <div class="insidecontainer">

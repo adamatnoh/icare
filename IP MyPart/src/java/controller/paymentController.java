@@ -84,21 +84,7 @@ public class paymentController extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet paymentServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>card no: "+cardNo+"</h1>");
-            out.println("<h1>card no: "+cvv+"</h1>");
-            out.println("<h1>card no: "+expDate+"</h1>");
-            out.println("<h1>card no: "+total+"</h1>");
-            out.println("<h1>card no: "+appointmentID+"</h1>");
-            RequestDispatcher rd = request.getRequestDispatcher("appointmentPatient.jsp");
-            rd.include(request, response);
-            out.println("</body>");
-            out.println("</html>");
+            response.sendRedirect ("appointmentPatient.jsp?msg=successful");
         }
     }
 
