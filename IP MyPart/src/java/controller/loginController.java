@@ -72,7 +72,17 @@ public class loginController extends HttpServlet {
             {
 //                rs.next();
                 session.setAttribute("userLoginID", rs.getInt(1));
-                session.setAttribute("loggedIn", 1);
+                if(userType == "guest")
+                {
+                    session.setAttribute("loggedIn", 1);
+                }
+                else if(userType == "receptionist")
+                {
+                    session.setAttribute("loggedIn", 2);
+                }
+                else{
+                    session.setAttribute("loggedIn", 3);
+                }
                 out.println("<h1>userType :"+userType+"</h1>");
                 out.println("<h1>email :"+email+"</h1>");
                 out.println("<h1>password :"+password+"</h1>");
