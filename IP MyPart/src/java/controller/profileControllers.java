@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,13 +37,16 @@ public class profileControllers extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+           
+        HttpSession session=request.getSession(true);
+        Integer id =  (Integer) session.getAttribute("userLoginID");
+        
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pass = "";
-        String query = ("UPDATE user SET name=?,userAddress=?,email=?,mobile=? WHERE userID='1'");
+        String query = ("UPDATE user SET name=?,userAddress=?,email=?,mobile=? WHERE userID="+id);
         
         String name = request.getParameter("name");
         String userAddress = request.getParameter("userAddress");
