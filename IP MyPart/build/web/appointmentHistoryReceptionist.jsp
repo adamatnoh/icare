@@ -54,7 +54,8 @@
     <body>
 
         <%
-        if((Integer)session.getAttribute("userLoginID")==3|(Integer)session.getAttribute("userLoginID")==2){    
+        try{
+        if((Integer)session.getAttribute("loggedIn")==3|(Integer)session.getAttribute("loggedIn")==2){    
             
         try{
         String driver = "com.mysql.jdbc.Driver";
@@ -133,26 +134,34 @@
 
   <%@include file="footer.jsp" %>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
     <% }else{ %>
     <section id="appointmentPatient" class="appointmentPatient">
           <div class="container">
-
             <div class="section-title">
               <h2>Sorry, you have no access to this page !</h2>
             </div>
           </div>
     </section>
-    <% } %>
+    <% 
+        }}
+        catch(Exception NullPointerException)
+        {%>
+          <section id="appointmentPatient" class="appointmentPatient">
+            <div class="container">
+              <div class="section-title">
+                <h2>Sorry, you have no access to this page !</h2>
+              </div>
+            </div>
+          </section>
+       <% } %>
+       
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
     </body>
 </html>
 
