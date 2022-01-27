@@ -65,6 +65,7 @@
         %>
 
         <%@include file="navbar_guest.jsp" %>
+        <%@include file="messageSuccess.jsp" %>
          
               <!-- ======= Contact Section ======= -->
                 <section id="contact" class="contact">

@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -66,20 +67,13 @@ public class profileControllers extends HttpServlet {
                 
                 st.close(); //7-close connection
                 con.close();
+                response.sendRedirect ("profile.jsp?msg=successful");
+                
                 
             }
-            
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet profileControllers</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Done</h1>");
-            out.println("</body>");
-            out.println("</html>");
+                //RequestDispatcher rd = request.getRequestDispatcher("/profile.jsp");
+                //rd.forward(request, response);
+                
         }
     }
 

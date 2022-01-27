@@ -35,16 +35,7 @@
       <!-- Template Main CSS File -->
       <link href="assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
-    
-      <style>
-          .msg
-          {
-            text-align: center;
-            background-color: #3eb8bd;
-            color: white;
-            padding: 15px;
-          }
-      </style>
+   
     
     </head>
     <body>
@@ -52,7 +43,7 @@
            Integer id =  (Integer) session.getAttribute("userLoginID"); 
            Integer loggedIn =  (Integer) session.getAttribute("loggedIn");
         %>
-        <%= id %>
+
         <%
             if(loggedIn != null)
             {
@@ -60,13 +51,7 @@
         
         <%@include file="navbar_guest.jsp" %>
         
-        <% 
-            String msg = request.getParameter("msg");
-            if("successful".equals(msg))
-            {
-        %>
-        <div class="msg">Data saved successfully!</div>
-        <% } %>
+        <%@include file="messageSuccess.jsp" %>
         <h1>INDEX PAGE</h1>
         <%
             }

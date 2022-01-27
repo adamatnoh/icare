@@ -83,9 +83,7 @@ public class loginController extends HttpServlet {
                 else{
                     session.setAttribute("loggedIn", 3);
                 }
-                out.println("<h1>userType :"+userType+"</h1>");
-                out.println("<h1>email :"+email+"</h1>");
-                out.println("<h1>password :"+password+"</h1>");
+              
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.include(request, response);
             }
