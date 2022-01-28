@@ -44,6 +44,14 @@
         <servlet-name>signOutController</servlet-name>
         <servlet-class>controller.signOutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DBCon</servlet-name>
+        <servlet-class>controller.DBCon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DepartmentDoctorServlet</servlet-name>
+        <servlet-class>controller.DepartmentDoctorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>appointmentController</servlet-name>
         <url-pattern>/appointmentController</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>signOutController</servlet-name>
         <url-pattern>/signOutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DBCon</servlet-name>
+        <url-pattern>/DBCon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DepartmentDoctorServlet</servlet-name>
+        <url-pattern>/DepartmentDoctorServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

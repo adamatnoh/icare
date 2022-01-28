@@ -38,7 +38,15 @@
       <!-- Template Main CSS File -->
       <link href="assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
-
+    <script>
+        function call() 
+    {
+        var depid = document.getElementById('depid').value; 
+        if (depid != "") {
+        window.location.href = "bookappoinment.jsp?depid=" + depid;
+        }
+    }
+    </script>
 
     </head>
     
@@ -89,16 +97,15 @@
                         </div>
 
                         <br/>
-
+                        
                         <div class="col-md-4 form-group mt-3">
                             <label for="appointdepartment">Appointment Department</label>
                             <br/>
-                            <select name="appointdepartment" class="btn btn-success dropdown-toggle">  
+                            <select name="appointdepartment" id="depid" class="btn btn-success dropdown-toggle">  
                                 <%  while(resultset.next()){ %>
                                     <option><%= resultset.getString(2)%></option> <!--taking scnd column in table-->
-                                <% } resultDr =statement.executeQuery("select * from doctor") ;%>
+                                <% } %>
                             </select>
-                            
                             <!--input type="text" name="appointdepartment" class="form-control datepicker" id="appointdepartment" required-->
                         </div>
 
@@ -106,13 +113,28 @@
                             <label for="appointdoctor">Appointment Doctor</label>
                             <br/>
                                 <select name="appointdoctor" class="btn btn-success dropdown-toggle">  
-                                <%  while(resultDr.next()){ %>
-                                    <option><%= resultDr.getString(2)%></option> <!--taking scnd column in table-->
+                                <% 
+                                resultDr =statement.executeQuery("select * from doctor where availability='Yes' AND departmentID=1") ;
+                                    
+                                while(resultDr.next()){ %>
+                                    <option><%= resultDr.getString(2)%></option> 
                                 <% } %>
                                 </select>
                             <!--input type="text" name="appointdoctor" class="form-control datepicker" id="appointdoctor" required-->
                         </div> 
-
+                                
+                        
+     
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                         <div class="form-group mt-3">
                           <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
                         </div>
