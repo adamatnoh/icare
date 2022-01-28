@@ -51,6 +51,14 @@
             border-radius: 9px !important;
         }
         
+        form button{
+            color: white;
+            background-color: #3eb8bd;
+            width: 150px;
+            height: 30px;
+            border-radius: 9px !important;
+        }
+        
     </style>
     
 </head>
@@ -58,6 +66,9 @@
 <body>
     
     <%
+        try{
+        if((Integer)session.getAttribute("loggedIn")==3){  
+        
         try{
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
@@ -76,6 +87,7 @@
     %>
 
         <%@include file="navbar_admin.jsp" %>
+        <%@include file="messageSuccess.jsp" %>
 
   <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
@@ -126,11 +138,16 @@
                     %>
                 </form>
                 </tr>
+                
             <% } %>
         </table>
- 
+        <form action="addDr.jsp" method="post">
+            <button type="submit">Add New Doctor</button>
+        </form>
     </div>
   </section>
+        
+        
 
   <%
             statement.close();
@@ -143,6 +160,19 @@
   %>
    
   <%@include file="footer.jsp" %>
+  
+  <% 
+        }}
+        catch(Exception NullPointerException)
+        {%>
+          <section id="appointmentPatient" class="appointmentPatient">
+            <div class="container">
+              <div class="section-title">
+                <h2>Sorry, you have no access to this page !</h2>
+              </div>
+            </div>
+          </section>
+       <% } %>
   
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>

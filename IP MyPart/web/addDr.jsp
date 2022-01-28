@@ -1,6 +1,12 @@
+<%-- 
+    Document   : addDr
+    Created on : Jan 29, 2022, 1:18:43 AM
+    Author     : hasifhafifi
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
-<%ResultSet rs =null;%>
+<%ResultSet resultset =null;%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,28 +41,23 @@
     
     <style>
 
-        table {
-        border-collapse: collapse !important;
+        .bungkus
+        {
+          width: auto;
+          background-color: #3eb8bd;
+          color: black;
+          border-radius: 9px;
+          padding: 30px;
         }
 
-        tr {
-        border-bottom: 1pt solid black !important;
-        }
-
-        button{
-            color: white;
-            background-color: #3eb8bd;
-            width: 80px;
-            height: 30px;
-            border-radius: 9px !important;
-        }
-        
-        form button{
-            color: white;
-            background-color: #3eb8bd;
-            width: 150px;
-            height: 30px;
-            border-radius: 9px !important;
+        #button
+        {
+          position: absolute; 
+          bottom: 20px; 
+          right: 40px;
+          color: white;
+          background-color: black;
+          border-radius: 9px;
         }
         
     </style>
@@ -81,73 +82,44 @@
         
         Connection con = DriverManager.getConnection(url, userName, pass); 
 
-        Statement statement = con.createStatement() ;
+            Statement statement = con.createStatement() ;
 
-        rs =statement.executeQuery("select doctor.*, department.* from doctor inner join department on doctor.departmentID=department.departmentID") ;
+            resultset =statement.executeQuery("select * from department") ;
     %>
 
         <%@include file="navbar_admin.jsp" %>
-        <%@include file="messageSuccess.jsp" %>
 
-  <section id="faq" class="faq section-bg">
+  <section>
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>List of Doctors</h2>
+            <h2>Add New Doctor Form</h2>
         </div>
-
-        <form action="">
-            <input type="text" placeholder="Search" name="search" style="background-color: #cef7f8; border-radius:9px;">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-        <br><br>
-
-        <table width="100%">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Grade</th>
-                <th>Department</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Availability</th>
-                <th>Details</th>
-            </tr>
-            <%  while(rs.next()){ %>
-                <tr>
-                    <td><%= rs.getString(1)%></td>
-                    <td><%= rs.getString(2)%></td>
-                    <td><%= rs.getString(3)%></td>
-                    <td><%= rs.getString(9)%></td>
-                    <td><%= rs.getString(4)%></td>
-                    <td><%= rs.getString(5)%></td>
-                    <%
-                        if(rs.getString(6).contentEquals("yes"))
-                    {%>
-                            <td><div style="color: green;">Available</div></td>
-                    <%}
-                        else
-                    {%>
-                            <td><div style="color: red;">Not Available</div></td>
-                    <% } %>
-                <form name="editDr" method="post" action="drProfile.jsp">
-                    <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                    <%
-                        session = request.getSession(true);
-                        session.setAttribute("drID", rs.getString(1));
-                    %>
-                </form>
-                </tr>
+        
+        <div class="bungkus">
+            <form name="addDoctor" method="post" action="addDrServlet">
+                <b>Name:</b>               
+                <input type="text" name="name" class="form-control" placeholder="Doctor Name" required/><br>
+                <b>Grade:</b>               
+                <input type="text" name="grade" class="form-control" placeholder="Doctor Grade" required/><br>
+                <b>Email:</b> 
+                <input type="email" name="email" class="form-control" placeholder="Doctor Email" required/><br>
+                <b>Mobile:</b>
+                <input type="text" name="mobile" class="form-control" placeholder="Doctor Phone Number" required/><br>
+                <label for="appointdepartment">Appointment Department</label>
+                <select name="appointdepartment" class="btn btn-success dropdown-toggle">  
+                    <%  while(resultset.next()){ %>
+                        <option><%= resultset.getString(2)%></option> <!--taking scnd column in table-->
+                    <% }%>
+                </select>
                 
-            <% } %>
-        </table>
-        <form action="addDr.jsp" method="post">
-            <button type="submit">Add New Doctor</button>
-        </form>
+                <input type="text" name="available" class="form-control" value="yes" hidden/><br>
+                <button type="submit" name="submit" id="button"><span style="color: #3eb8bd;"><i class="fas fa-save"></i></span>&nbsp&nbspSave</button>
+            </form>  
+        </div>
+ 
     </div>
   </section>
-        
-        
 
   <%
             statement.close();
@@ -158,9 +130,9 @@
              out.println("wrong entry "+e);
         } 
   %>
+  
    
   <%@include file="footer.jsp" %>
-  
   <% 
         }}
         catch(Exception NullPointerException)
