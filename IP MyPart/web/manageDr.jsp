@@ -32,7 +32,7 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
-    
+
     <style>
 
         table {
@@ -50,7 +50,7 @@
             height: 30px;
             border-radius: 9px !important;
         }
-        
+
         form button{
             color: white;
             background-color: #3eb8bd;
@@ -58,28 +58,34 @@
             height: 30px;
             border-radius: 9px !important;
         }
-        
+        .msg{
+          text-align: center;
+          background-color: #3eb8bd;
+          color: white;
+          padding: 15px;
+        }
+
     </style>
-    
+
 </head>
 
 <body>
-    
+
     <%
         try{
-        if((Integer)session.getAttribute("loggedIn")==3){  
-        
+        if((Integer)session.getAttribute("loggedIn")==3){
+
         try{
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pass = "";
-       
+
         Class.forName(driver); //2- Load & Register driver
-        
-        
-        Connection con = DriverManager.getConnection(url, userName, pass); 
+
+
+        Connection con = DriverManager.getConnection(url, userName, pass);
 
         Statement statement = con.createStatement() ;
 
@@ -87,7 +93,15 @@
     %>
 
         <%@include file="navbar_admin.jsp" %>
-        <%@include file="messageSuccess.jsp" %>
+        <%
+            String msg = request.getParameter("msg");
+            if("successful".equals(msg))
+            {
+        %>
+        <div class="msg">Data saved successfully!</div>
+        <% }else if("deleted".equals(msg)){ %>
+        <div class="msg" style="color:red">Account deleted successfully!</div>
+        <% } %>
 
   <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
@@ -138,7 +152,7 @@
                     %>
                 </form>
                 </tr>
-                
+
             <% } %>
         </table>
         <form action="addDr.jsp" method="post">
@@ -146,8 +160,8 @@
         </form>
     </div>
   </section>
-        
-        
+
+
 
   <%
             statement.close();
@@ -156,12 +170,12 @@
         catch(Exception e)
         {
              out.println("wrong entry "+e);
-        } 
+        }
   %>
-   
+
   <%@include file="footer.jsp" %>
-  
-  <% 
+
+  <%
         }}
         catch(Exception NullPointerException)
         {%>
@@ -173,7 +187,7 @@
             </div>
           </section>
        <% } %>
-  
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -184,6 +198,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  
+
 </body>
 </html>
