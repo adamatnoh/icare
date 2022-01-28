@@ -8,10 +8,13 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author adamn
+ * @author hasifhafifi
  */
-public class doctorController extends HttpServlet {
+public class addDrServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,50 +34,56 @@ public class doctorController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-            
+        
+        String name = request.getParameter("name");
+        String grade = request.getParameter("grade");
+        String email = request.getParameter("email");
+        String mobile = request.getParameter("mobile");
+        String availability = request.getParameter("available");
+        String department = request.getParameter("appointdepartment");
+        
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pass = "";
-        String id = request.getParameter("doctorID");
-        
-        String query = ("UPDATE doctor SET name=?,email=?,mobile=?,availability=?,grade=? WHERE doctorID="+id);
+        String query = "INSERT INTO doctor(name, grade, email, mobile, availability, departmentID) VALUES(?,?,?,?,?,?)";
         
         try{
             Class.forName(driver); //2- Load & Register driver
         }catch(ClassNotFoundException ex){
             System.out.println("not found");
-            Logger.getLogger(reportController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(registrationController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         Connection con = DriverManager.getConnection(url, userName, pass); //3- Establish connection
-        PreparedStatement st = con.prepareStatement(query); 
+        Statement statement = con.createStatement();
+        ResultSet rs =statement.executeQuery("SELECT * FROM department WHERE departmentName=\'"+department+"\'");
+        rs.next();
         
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String mobile = request.getParameter("mobile");
-        String availability = request.getParameter("availability");
-        String grade = request.getParameter("grade");
+        int departmentId = rs.getInt(1);
+        
+        PreparedStatement st = con.prepareStatement(query);
         
         st.setString(1, name);
-        st.setString(2, email);
-        st.setString(3, mobile);
-        st.setString(4, availability);
-        st.setString(5, grade);
+        st.setString(2, grade);
+        st.setString(3, email);
+        st.setString(4, mobile);
+        st.setString(5, availability);
+        st.setInt(6, departmentId);
         
-        int insertStatus=st.executeUpdate();
-        System.out.println(insertStatus + "row affected");//6- process result
-
+        st.executeUpdate();
+        
         st.close(); //7-close connection
         con.close();
-
+        
+        
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             response.sendRedirect ("manageDr.jsp?msg=successful");
         }
     }
@@ -94,7 +103,7 @@ public class doctorController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(profileControllers.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(addDrServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -112,7 +121,7 @@ public class doctorController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(profileControllers.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(addDrServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
