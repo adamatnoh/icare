@@ -48,7 +48,7 @@ public class DepartmentDoctorDao {
     public List<Doctor> getDoctorByDepartId(int departmentID){
         List<Doctor> list = new ArrayList<>();
         try{
-            query = "select * from doctor where departmentID=?";
+            query = "select * from doctor where availability='Yes' AND departmentID=?";
             pst = this.con.prepareStatement(query);
             pst.setInt(1, departmentID);
             rs = pst.executeQuery();

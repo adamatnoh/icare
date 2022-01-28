@@ -107,7 +107,7 @@
                 <li><a class="nav-link scrollto" href="signOutController">Sign Out</a></li>
                 <li class="dropdown"><div class="appointment-btn scrollto"><span>Make an</span> Appointment<i class="bi bi-chevron-down"></i></div>
                     <ul>
-                        <li><a href="bookappointment1.jsp"><span>Appointment</span></a></li>
+                        <li><a href="bookappointment.jsp"><span>Appointment</span></a></li>
                         <li><a href="onlineConsultation.jsp"><span>Online Consultation</span></a></li>
                     </ul>
                 </li>
