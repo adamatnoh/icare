@@ -113,7 +113,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                var depid='';
+               
                 $.ajax({
                     url: "DepartmentDoctorServlet",
                     method: "GET",
@@ -122,8 +122,7 @@
                         console.log(data);
                         let obj = $.parseJSON(data);
                         $.each(obj, function (key, value) {
-                            $('#department').append('<option value="' + value.departmentName + '">' + value.departmentName + '</option>');
-                            depid=value.departmentID;
+                            $('#department').append('<option value="' + value.departmentID + '">' + value.departmentName + '</option>');
                         });
                        // $('select').formSelect();
                     },
@@ -138,7 +137,7 @@
                     $('#doctor').find('option').remove();
                     $('#doctor').append('<option>Select Doctor</option>'); 
 
-                    let cid = depid;
+                    let cid = $('#department').val();
                     let data = {
                         operation: "doctor",
                         id: cid

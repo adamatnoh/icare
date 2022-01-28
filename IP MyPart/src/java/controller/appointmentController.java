@@ -45,6 +45,7 @@ public class appointmentController extends HttpServlet {
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pass = "";
+        String query1="SELECT * from department WHERE departmentID=?";
         String query = "INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink, userID,status) VALUES(?,?,?,?,?,?,?,?,?)";
         
         try{
@@ -55,11 +56,25 @@ public class appointmentController extends HttpServlet {
         }
         
         Connection con = DriverManager.getConnection(url, userName, pass); //3- Establish connection
+        PreparedStatement st1 = con.prepareStatement(query1);
+        String appointID = request.getParameter("appointdepartment");
+        st1.setString(1, appointID);
+        ResultSet rs1=st1.executeQuery();
+        
+        String appointDepartment="";
+        while ( rs1.next() )
+        {
+          appointDepartment=rs1.getString(2);
+
+        }
+        
+        
+        
         PreparedStatement st = con.prepareStatement(query);
         
         String appointdate = request.getParameter("appointdate");
         String appointtime = request.getParameter("appointtime");
-        String appointdepartment = request.getParameter("appointdepartment");
+        //String appointdepartment = request.getParameter("appointDepartment");
         String appointdoctor = request.getParameter("appointdoctor");
         String message = request.getParameter("message");
         String appointmentType = request.getParameter("appointmentType");
@@ -67,7 +82,7 @@ public class appointmentController extends HttpServlet {
         
         st.setString(1, appointdate);
         st.setString(2, appointtime);
-        st.setString(3, appointdepartment);
+        st.setString(3, appointDepartment);
         st.setString(4, appointdoctor);
         st.setString(5,message);
         st.setString(6,appointmentType);
@@ -84,7 +99,7 @@ public class appointmentController extends HttpServlet {
         appointment appointment = new appointment();
         appointment.setAppointmentDate(appointdate);
         appointment.setAppointmentTime(appointtime);
-        appointment.setAppointmentDepartment(appointdepartment);
+        appointment.setAppointmentDepartment(appointDepartment);
         appointment.setAppointmentDr(appointdoctor);
         appointment.setMessage(message);
         

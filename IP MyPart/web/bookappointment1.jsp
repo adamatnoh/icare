@@ -150,7 +150,7 @@
                             console.log(data);
                             let obj = $.parseJSON(data);
                             $.each(obj, function (key, value) {
-                                $('#doctor').append('<option value="' + value.doctorID + '">' + value.name + '</option>');
+                                $('#doctor').append('<option value="' + value.name + '">' + value.name + '</option>');
                             });
                             //$('select').formSelect();
                         },

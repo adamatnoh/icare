@@ -104,7 +104,7 @@
                         </tbody>
                     </table>
                         <br/>
-                        <a href="appointmentHistoryPatient.jsp" class="btn btn-info btn-sm active" type="button" >View Appointment History</a>
+                        <a href="appointmentHistoryPatient.jsp" class="appointment-btn scrollto" type="button" >View Appointment History</a>
                     </div>
                         
                 </section>
