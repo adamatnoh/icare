@@ -44,6 +44,10 @@
         <servlet-name>signOutController</servlet-name>
         <servlet-class>controller.signOutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>doctorDeleteController</servlet-name>
+        <servlet-class>controller.doctorDeleteController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>appointmentController</servlet-name>
         <url-pattern>/appointmentController</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>signOutController</servlet-name>
         <url-pattern>/signOutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doctorDeleteController</servlet-name>
+        <url-pattern>/doctorDeleteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

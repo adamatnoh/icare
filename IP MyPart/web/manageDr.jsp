@@ -51,6 +51,13 @@
             border-radius: 9px !important;
         }
         
+        .msg{
+          text-align: center;
+          background-color: #3eb8bd;
+          color: white;
+          padding: 15px;
+        }
+        
     </style>
     
 </head>
@@ -76,6 +83,15 @@
     %>
 
         <%@include file="navbar_admin.jsp" %>
+        <% 
+            String msg = request.getParameter("msg");
+            if("successful".equals(msg))
+            {
+        %>
+        <div class="msg">Data saved successfully!</div>
+        <% }else if("deleted".equals(msg)){ %>
+        <div class="msg" style="color:red">Account deleted successfully!</div>
+        <% } %>
 
   <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">

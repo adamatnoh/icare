@@ -7,11 +7,9 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author adamn
  */
-public class doctorController extends HttpServlet {
+public class doctorDeleteController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,12 +29,11 @@ public class doctorController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-            
+        
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
         String url = "jdbc:mysql://localhost/" + dbName + "?";
@@ -44,38 +41,17 @@ public class doctorController extends HttpServlet {
         String pass = "";
         String id = request.getParameter("doctorID");
         
-        String query = ("UPDATE doctor SET name=?,email=?,mobile=?,availability=?,grade=? WHERE doctorID="+id);
+        Class.forName(driver);
+        Connection con = DriverManager.getConnection(url, userName, pass);
         
-        try{
-            Class.forName(driver); //2- Load & Register driver
-        }catch(ClassNotFoundException ex){
-            System.out.println("not found");
-            Logger.getLogger(reportController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        PreparedStatement st = con.prepareStatement("DELETE FROM doctor WHERE doctorID="+id);
+        st.executeUpdate();
         
-        Connection con = DriverManager.getConnection(url, userName, pass); //3- Establish connection
-        PreparedStatement st = con.prepareStatement(query); 
-        
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String mobile = request.getParameter("mobile");
-        String availability = request.getParameter("availability");
-        String grade = request.getParameter("grade");
-        
-        st.setString(1, name);
-        st.setString(2, email);
-        st.setString(3, mobile);
-        st.setString(4, availability);
-        st.setString(5, grade);
-        
-        int insertStatus=st.executeUpdate();
-        System.out.println(insertStatus + "row affected");//6- process result
-
-        st.close(); //7-close connection
+        st.close(); //7- Close connection
         con.close();
 
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect ("manageDr.jsp?msg=successful");
+            response.sendRedirect ("manageDr.jsp?msg=deleted");
         }
     }
 
@@ -94,7 +70,9 @@ public class doctorController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(profileControllers.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(doctorDeleteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(doctorDeleteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -112,7 +90,9 @@ public class doctorController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(profileControllers.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(doctorDeleteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(doctorDeleteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
