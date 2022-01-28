@@ -57,8 +57,7 @@
         Connection con = DriverManager.getConnection(url, userName, pass); 
 
             Statement statement = con.createStatement() ;
-            session = request.getSession(true);
-            String id = (String)session.getAttribute("drID");
+            int id = Integer.parseInt(request.getParameter("doctorID"));
 
             resultset =statement.executeQuery("select doctor.*, department.* from doctor inner join department on doctor.departmentID=department.departmentID where doctorID ="+id) ;
             

@@ -45,6 +45,18 @@
         <servlet-class>controller.signOutController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DBCon</servlet-name>
+        <servlet-class>controller.DBCon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DepartmentDoctorServlet</servlet-name>
+        <servlet-class>controller.DepartmentDoctorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doctorDeleteController</servlet-name>
+        <servlet-class>controller.doctorDeleteController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>addDrServlet</servlet-name>
         <servlet-class>controller.addDrServlet</servlet-class>
     </servlet>
@@ -91,6 +103,18 @@
     <servlet-mapping>
         <servlet-name>signOutController</servlet-name>
         <url-pattern>/signOutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DBCon</servlet-name>
+        <url-pattern>/DBCon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DepartmentDoctorServlet</servlet-name>
+        <url-pattern>/DepartmentDoctorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doctorDeleteController</servlet-name>
+        <url-pattern>/doctorDeleteController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>addDrServlet</servlet-name>

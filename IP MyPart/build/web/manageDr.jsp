@@ -50,7 +50,6 @@
             height: 30px;
             border-radius: 9px !important;
         }
-
         form button{
             color: white;
             background-color: #3eb8bd;
@@ -110,11 +109,7 @@
             <h2>List of Doctors</h2>
         </div>
 
-        <form action="">
-            <input type="text" placeholder="Search" name="search" style="background-color: #cef7f8; border-radius:9px;">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-        <br><br>
+        <br>
 
         <table width="100%">
             <tr>
@@ -144,17 +139,16 @@
                     {%>
                             <td><div style="color: red;">Not Available</div></td>
                     <% } %>
+             
                 <form name="editDr" method="post" action="drProfile.jsp">
+                    <input type="hidden" id="doctorID" name="doctorID" value=<%= rs.getString(1)%>>
                     <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                    <%
-                        session = request.getSession(true);
-                        session.setAttribute("drID", rs.getString(1));
-                    %>
                 </form>
                 </tr>
 
             <% } %>
         </table>
+        <br>
         <form action="addDr.jsp" method="post">
             <button type="submit">Add New Doctor</button>
         </form>
