@@ -107,6 +107,7 @@
                     </div>
                     <br/>
                     <input type="text" name="appointmentType" value="online" hidden/>
+                    <input type="hidden" name="action" value="ADD">
                   <div class="text-center"><button type="submit" name="submit" class="appointment-btn scrollto">Book Online Consultation</button></div>
                 </form>
             </div>
