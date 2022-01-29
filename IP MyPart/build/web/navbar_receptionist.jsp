@@ -54,7 +54,7 @@
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
-            <a href="#appointmentconfirmation" class="appointment-btn scrollto"><span class="d-none d-md-inline">Appointment</span> Confirmation</a>
+            <a href="pendingAppointment.jsp" class="appointment-btn scrollto"><span class="d-none d-md-inline">Appointment</span> Confirmation</a>
 
             </div>
         </header><!-- End Header -->

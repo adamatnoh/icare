@@ -72,11 +72,11 @@
     %>
 
     <% 
-        if((Integer)session.getAttribute("userLoginID")==1){ 
+        if((Integer)session.getAttribute("loggedIn")==1){ 
     %>
         <%@include file="navbar_guest.jsp" %>
     <% 
-        }else if((Integer)session.getAttribute("userLoginID")==2) {
+        }else if((Integer)session.getAttribute("loggedIn")==2) {
     %>
         <%@include file="navbar_receptionist.jsp" %>   
     <% 
