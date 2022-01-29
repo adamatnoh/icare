@@ -148,7 +148,7 @@
                             <div class="col form-group mt-3 mx-3">
                               <form action="doctorDeleteController" method="post">
                                   <input type="hidden" id="doctorID" name="doctorID" value=<%= resultset.getString(1)%>>
-                                  <div class="text-center"><button button type="submit" name="submit" class="appointment-btn scrollto" style="background-color: red">Delete Account</button></div>    
+                                  <div class="text-center"><button button type="submit" name="submit" class="appointment-btn scrollto" style="background-color: red;" onclick="return confirm('Are you sure you want to delete?')">Delete Account</button></div>    
                               </form>
                             </div>
                           </div>
