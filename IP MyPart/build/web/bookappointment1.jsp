@@ -92,7 +92,6 @@
                     </div>
                     <br/>
                     <input type="text" name="appointmentType" value="appointment" hidden/>
-                    <input type="hidden" name="action" value="ADD">
                   <div class="text-center"><button type="submit" name="submit" class="appointment-btn scrollto">Make an Appointment</button></div>
                 </form>
             </div>
@@ -114,7 +113,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-               
                 $.ajax({
                     url: "DepartmentDoctorServlet",
                     method: "GET",

@@ -6,8 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
-<%ResultSet resultset =null;%>
-<%ResultSet resultDr =null;%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,30 +36,10 @@
       <!-- Template Main CSS File -->
       <link href="assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
-
-
     </head>
     
     <body>
-        
-        <%
-        try{
-        String driver = "com.mysql.jdbc.Driver";
-        String dbName = "icare";
-        String url = "jdbc:mysql://localhost/" + dbName + "?";
-        String userName = "root";
-        String pass = "";
-       
-        Class.forName(driver); //2- Load & Register driver
-        
-        
-        Connection con = DriverManager.getConnection(url, userName, pass); 
 
-            Statement statement = con.createStatement() ;
-
-            resultset =statement.executeQuery("select * from department") ;
-            
-        %>
 
         <%@include file="navbar_guest.jsp" %>
          
@@ -89,49 +67,36 @@
                         </div>
 
                         <br/>
-
+                        
                         <div class="col-md-4 form-group mt-3">
                             <label for="appointdepartment">Appointment Department</label>
                             <br/>
-                            <select name="appointdepartment" class="btn btn-success dropdown-toggle">  
-                                <%  while(resultset.next()){ %>
-                                    <option><%= resultset.getString(2)%></option> <!--taking scnd column in table-->
-                                <% } resultDr =statement.executeQuery("select * from doctor") ;%>
+                            <select name="appointdepartment" id="department" class="btn btn-success dropdown-toggle">  
+                                <option>Select Department</option>
                             </select>
-                            
-                            <!--input type="text" name="appointdepartment" class="form-control datepicker" id="appointdepartment" required-->
                         </div>
+    
 
                         <div class="col-md-4 form-group mt-3">
                             <label for="appointdoctor">Appointment Doctor</label>
                             <br/>
-                                <select name="appointdoctor" class="btn btn-success dropdown-toggle">  
-                                <%  while(resultDr.next()){ %>
-                                    <option><%= resultDr.getString(2)%></option> <!--taking scnd column in table-->
-                                <% } %>
+                                <select name="appointdoctor" id="doctor" class="btn btn-success dropdown-toggle">  
+                                    <option>Select Doctor</option>
                                 </select>
-                            <!--input type="text" name="appointdoctor" class="form-control datepicker" id="appointdoctor" required-->
-                        </div> 
 
+                        </div> 
+        
                         <div class="form-group mt-3">
                           <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
                         </div>
                     </div>
                     <br/>
                     <input type="text" name="appointmentType" value="appointment" hidden/>
+                    <input type="hidden" name="action" value="ADD">
                   <div class="text-center"><button type="submit" name="submit" class="appointment-btn scrollto">Make an Appointment</button></div>
                 </form>
             </div>
         </section>
-        
-        <%
-
-        }
-        catch(Exception e)
-        {
-             out.println("wrong entry"+e);
-        }
-%>
 
   <%@include file="footer.jsp" %>
 
@@ -145,6 +110,63 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+               
+                $.ajax({
+                    url: "DepartmentDoctorServlet",
+                    method: "GET",
+                    data: {operation: 'department'},
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        let obj = $.parseJSON(data);
+                        $.each(obj, function (key, value) {
+                            $('#department').append('<option value="' + value.departmentID + '">' + value.departmentName + '</option>');
+                        });
+                       // $('select').formSelect();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#department').append('<option>Department Unavailable</option>');
+                    },
+                    cache: false
+                });
+
+
+                $('#department').change(function () {
+                    $('#doctor').find('option').remove();
+                    $('#doctor').append('<option>Select Doctor</option>'); 
+
+                    let cid = $('#department').val();
+                    let data = {
+                        operation: "doctor",
+                        id: cid
+                    };
+
+                    $.ajax({
+                        url: "DepartmentDoctorServlet",
+                        method: "GET",
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+                            console.log(data);
+                            let obj = $.parseJSON(data);
+                            $.each(obj, function (key, value) {
+                                $('#doctor').append('<option value="' + value.name + '">' + value.name + '</option>');
+                            });
+                            //$('select').formSelect();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#doctor').append('<option>Doctor Unavailable</option>');
+                        },
+                        cache: false
+                    });
+                });
+                
+    
+
+            });
+        </script>
   
     </body>
 </html>

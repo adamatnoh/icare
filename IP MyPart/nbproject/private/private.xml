@@ -3,17 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/messageSuccess.jsp</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/appointmentPatient.jsp</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/login.jsp</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/paymentController.java</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/index.jsp</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/signOutController.java</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/loginController.java</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/messagesignout.jsp</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/profileControllers.java</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/appointmentController.java</file>
-            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/appointmentHistoryReceptionist.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/src/java/controller/DepartmentDoctorServlet.java</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/footer.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/bookappointment1.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/bookappointment.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/src/java/controller/DBCon.java</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/src/java/model/DepartmentDoctorDao.java</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/navbar_guest.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/web/onlineConsultation.jsp</file>
+            <file>file:/C:/Users/zulhu/Documents/GitHub/icare/IP%20MyPart/src/java/controller/appointmentController.java</file>
         </group>
     </open-files>
 </project-private>
