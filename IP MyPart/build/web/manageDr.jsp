@@ -131,7 +131,7 @@
                     <td><%= rs.getString(4)%></td>
                     <td><%= rs.getString(5)%></td>
                     <%
-                        if(rs.getString(6).contentEquals("yes"))
+                        if(rs.getString(6).contentEquals("Yes"))
                     {%>
                             <td><div style="color: green;">Available</div></td>
                     <%}
