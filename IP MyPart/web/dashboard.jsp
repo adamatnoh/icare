@@ -42,7 +42,7 @@
     <style>
 
         button{
-            color: white;
+            color: #ffffff;
             background-color: #055160;
             width: 250px;
             height: 50px;
@@ -83,8 +83,8 @@
            &nbsp&nbsp Specialist in </br>
            &nbsp&nbsp CARDIOLOGY </br></br>
            &nbsp&nbsp Location </br>
-           &nbsp&nbsp HOSPITAL BESAR SELAYANG </br></br></br>
-           <button href="bookappointment.jsp"> MAKE AN APPOINTMENT OR ENQUIRIES </button>
+           &nbsp&nbsp HOSPITAL BESAR SELAYANG </br></br> 
+           <button a href="bookappointment1.jsp"> MAKE AN APPOINTMENT OR ENQUIRIES</button>
            </a>
            
            
@@ -97,8 +97,8 @@
            &nbsp&nbsp Specialist in </br>
            &nbsp&nbsp NEUROLOGY </br></br>
            &nbsp&nbsp Location </br>
-           &nbsp&nbsp HOSPITAL PANTAI KASIH </br></br></BR>
-            <button href="bookappointment.jsp"> MAKE AN APPOINTMENT OR ENQUIRIES </button>
+           &nbsp&nbsp HOSPITAL PANTAI KASIH </br></br>>
+           <button a href="bookappointment1.jsp"> MAKE AN APPOINTMENT OR ENQUIRIES</button>
            </a>
          </div1>
  
@@ -109,14 +109,16 @@
            &nbsp&nbsp Specialist in </br>
            &nbsp&nbsp VASCULAR SURGERY </br></br>
            &nbsp&nbsp Location </br>
-           &nbsp&nbsp HOSPITAL AMPANG </br></br></BR>
-            <button href="bookappointment.jsp"> MAKE AN APPOINTMENT OR ENQUIRIES </button>
+           &nbsp&nbsp HOSPITAL AMPANG </br></br>
+           <button a href="bookappointment1.jsp"> MAKE AN APPOINTMENT OR ENQUIRIES</button>
            </a>
          </div1>
         
         </br></br>
-         <button href="drProfile.jsp" class="listDr-btn scrollto"><span class="d-none d-md-inline">Load More</a>
-      </section><!-- End Frequently Asked Questions Section -->
+       
+        <form method="get" action="/drProfile.jsp">
+          <button type="submit">Load More</button>
+        </form>
       
       <%@include file="footer.jsp" %>
   

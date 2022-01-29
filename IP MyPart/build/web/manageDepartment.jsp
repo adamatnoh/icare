@@ -64,9 +64,77 @@
  </head>
 
  <body>
+     <%
+         Integer id =  (Integer) session.getAttribute("userLoginID");
+        try {
+        String driver = "com.mysql.jdbc.Driver";
+        String dbName = "icare";
+        String url = "jdbc:mysql://localhost/" + dbName + "?";
+        String userName = "root";
+        String pass = "";
+        int nombor=1;
+       
+        Class.forName(driver); //2- Load & Register driver
+        int a = (Integer) session.getAttribute("userLoginID");
+        
+        Connection con = DriverManager.getConnection(url, userName, pass); 
+
+            Statement statement = con.createStatement() ;
+            
+             resultset =statement.executeQuery("select department.*, department.ID, department.name"+a) ;
+        
+        %>
+        
         <%@include file="navbar_admin.jsp" %>
         
-        </br></br>
+        <!-- ======= Contact Section ======= -->
+                <section id="department" class="department">
+                  
+
+                    <div class="section-title">
+                      <h2>Manage Department</h2>
+                    </div>
+
+                  
+                    <div class="container">
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Department ID</th>
+                                <th scope="col">Department Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <%  while(resultset.next()){ %>
+                            <tr>
+                            <th scope="row"><%= nombor++ %></th>
+                                <td><%= resultset.getString(2)%></td>
+                                <td><%= resultset.getString(3)%></td>
+                                
+                                 %>                
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                   
+   
+                         <a href="manageDr.jsp" class="btn btn-secondary btn-sm active" type="button" >Manage Doctor</a>
+                    </div>
+                    </section>
+         
+       <%
+        } catch(Exception e)
+        {
+             out.println("Error:"+e);
+        }
+  %>
+  
+      <%@include file="footer.jsp" %>
+                       
+               
+        <!--/br></br>
         <div class="section-title">
             <h2>Manage Department</h2>
         </div>
@@ -149,7 +217,9 @@
         
         </br></br></br>
          <a href="manageDr.jsp" class="manageDr-btn scrollto"><span class="d-none d-md-inline">Manage Doctor</a>
-    </div>
+    </div-->
+    
+     
 
       
   
