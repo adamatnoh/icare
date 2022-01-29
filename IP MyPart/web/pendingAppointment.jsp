@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%ResultSet resultset =null;%>
 <!DOCTYPE html>
  <html>
     <head>
@@ -135,7 +137,7 @@
         </br></br>
          <a href="appointmentHistory.jsp" class="appointment-btn scrollto"><span class="d-none d-md-inline">View Appointment</span> History</a>
     </div>
-  </section><!-- End Frequently Asked Questioins Section -->
+  </section><!-- End Frequently Asked Questions Section -->
 
   <%@include file="footer.jsp" %>
   
