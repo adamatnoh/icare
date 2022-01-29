@@ -68,11 +68,10 @@
  </head>
 
  <body>
-        <%@include file="navbar_admin.jsp" %>
         
         </br></br>
         <div class="section-title">
-            <h2>Dashboard</h2>
+            <h2>Doctor List</h2>
         </div>
        
 

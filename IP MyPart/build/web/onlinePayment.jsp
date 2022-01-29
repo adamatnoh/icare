@@ -60,13 +60,13 @@
                 }
                 if(document.payForm.cardNo.value.length != 12)
                 {
-                    alert( "Please check your card number!" );
+                    alert( "Please make sure your card number length is 12 numbers!" );
                     document.payForm.cardNo.focus() ;
                     return false;
                 }
                 if(document.payForm.cvv.value.length != 3)
                 {
-                    alert( "Please check your card cvv number!" );
+                    alert( "Please make sure your card cvv number length is 3 numbers!" );
                     document.payForm.cvv.focus() ;
                     return false;
                 }

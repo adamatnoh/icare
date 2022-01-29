@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%ResultSet rs =null;%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,12 +37,59 @@
       <link href="assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
    
-    
+      <style>
+
+        button{
+            color: white;
+            background-color: #3eb8bd;
+            width: 80px;
+            height: 30px;
+            border-radius: 9px !important;
+        }
+        
+        div1{
+            width: 15%;
+            float: left;
+            height: 390px;
+            background-color: #b2e4e6;
+            margin: 20px;
+            display: flex;
+            padding: 10px;
+            border: solid;
+            border-color: #055160;
+            border-radius: 10px;
+            flex-direction: row;
+        }
+        
+        .mid{
+            margin: auto;
+        }
+        
+        .box{
+            padding-left: 150px;
+        }
+    </style>
     </head>
     <body>
         <% 
            Integer id =  (Integer) session.getAttribute("userLoginID"); 
            Integer loggedIn =  (Integer) session.getAttribute("loggedIn");
+           
+        try{
+        String driver = "com.mysql.jdbc.Driver";
+        String dbName = "icare";
+        String url = "jdbc:mysql://localhost/" + dbName + "?";
+        String userName = "root";
+        String pass = "";
+
+        Class.forName(driver); //2- Load & Register driver
+
+
+        Connection con = DriverManager.getConnection(url, userName, pass);
+
+        Statement statement = con.createStatement() ;
+
+        rs =statement.executeQuery("select doctor.*, department.* from doctor inner join department on doctor.departmentID=department.departmentID") ;
         %>
 
         <%
@@ -63,7 +111,39 @@
         <% } %>
         
         <%@include file="messageSuccess.jsp" %>
-        <h1>INDEX PAGE</h1>
+        <%--@include file="dashboard.jsp" --%>
+        </br></br>
+        <div class="section-title">
+            <h2>Doctor List</h2>
+        </div>
+       
+        <%  while(rs.next()){ %>
+        <div class="mid box">
+            <div1 class="dr1"> 
+                <div class="mid">
+                    <i class="fas fa-user"></i>
+                    <b> <%= rs.getString(2)%></b></br></br>
+                    Grade: </br>
+                    <%= rs.getString(2)%></br></br>
+                    Specialist in: </br>
+                    <%= rs.getString(9)%></br></br>
+                    Email: </br>
+                    <%= rs.getString(4)%> </br></br>
+                    Phone Number: </br>
+                    <%= rs.getString(5)%> </br></br> 
+                    
+                    <% if(loggedIn==3){ %>
+                    <form name="editDr" method="post" action="drProfile.jsp">
+                        <input type="hidden" id="doctorID" name="doctorID" value=<%= rs.getString(1)%>>
+                        <td><button type="submit" value="details">Update</button></td>
+                    </form>
+                    <br>
+                    <% } %>
+                </div>
+            </div1>
+        </div>
+        <% } %>
+        
         <%
             }
             else{
@@ -71,7 +151,17 @@
                 rd.forward(request, response);
             }
         %>
-          
+        
+        <%
+            statement.close();
+            con.close();
+        }
+        catch(Exception e)
+        {
+             out.println("wrong entry "+e);
+        }
+        %>
+        
         <%@include file="footer.jsp" %>
 
         <!-- Vendor JS Files -->
