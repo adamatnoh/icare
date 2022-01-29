@@ -60,6 +60,14 @@
         <servlet-name>addDrServlet</servlet-name>
         <servlet-class>controller.addDrServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>approveController</servlet-name>
+        <servlet-class>controller.approveController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>apprController</servlet-name>
+        <servlet-class>controller.apprController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>appointmentController</servlet-name>
         <url-pattern>/appointmentController</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>addDrServlet</servlet-name>
         <url-pattern>/addDrServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>approveController</servlet-name>
+        <url-pattern>/approveController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>apprController</servlet-name>
+        <url-pattern>/apprController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

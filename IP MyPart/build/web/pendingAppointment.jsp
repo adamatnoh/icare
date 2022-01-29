@@ -1,15 +1,10 @@
-<%-- 
-    Document   : manageAppointment
-    Created on : Jan 7, 2022, 4:28:12 PM
-    Author     : Asus VivoBook S
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
-<%ResultSet resultset =null;%>
+<%ResultSet rs =null;%>
 <!DOCTYPE html>
- <html>
-    <head>
+<html lang="en">
+
+<head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -37,15 +32,15 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
-    
+
     <style>
 
         table {
-        border-collapse: collapse;
+        border-collapse: collapse !important;
         }
 
         tr {
-        border-bottom: 1pt solid black;
+        border-bottom: 1pt solid black !important;
         }
 
         button{
@@ -53,32 +48,68 @@
             background-color: #3eb8bd;
             width: 80px;
             height: 30px;
-            border-radius: 9px;
+            border-radius: 9px !important;
         }
-        
+        form button{
+            color: white;
+            background-color: #3eb8bd;
+            width: 150px;
+            height: 30px;
+            border-radius: 9px !important;
+        }
+        .msg{
+          text-align: center;
+          background-color: #3eb8bd;
+          color: white;
+          padding: 15px;
+        }
+
     </style>
-    
- </head>
 
- <body>
-  
- <%@include file="navbar_receptionist.jsp" %>
+</head>
 
- <!-- ======= Frequently Asked Questioins Section ======= -->
+<body>
+
+    <%
+        try{
+        if((Integer)session.getAttribute("loggedIn")==2){
+
+        try{
+        String driver = "com.mysql.jdbc.Driver";
+        String dbName = "icare";
+        String url = "jdbc:mysql://localhost/" + dbName + "?";
+        String userName = "root";
+        String pass = "";
+
+        Class.forName(driver); //2- Load & Register driver
+
+
+        Connection con = DriverManager.getConnection(url, userName, pass);
+
+        Statement statement = con.createStatement() ;
+
+        rs =statement.executeQuery("select appointment.*, user.* from appointment inner join user on appointment.userID=user.userID where appointment.status='Pending'") ;
+    %>
+
+        <%@include file="navbar_receptionist.jsp" %>
+        <%
+            String msg = request.getParameter("msg");
+            if("successful".equals(msg))
+            {
+        %>
+        <div class="msg">Data saved successfully!</div>
+        <% }else if("deleted".equals(msg)){ %>
+        <div class="msg" style="color:red">Account deleted successfully!</div>
+        <% } %>
+
   <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
-
-        <br><br><br>
 
         <div class="section-title">
             <h2>Pending Appointment</h2>
         </div>
 
-        <form action="">
-            <input type="text" placeholder="Search" name="search" style="background-color: #cef7f8; border-radius:9px;">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-        <br><br>
+        <br>
 
         <table width="100%">
             <tr>
@@ -87,60 +118,75 @@
                 <th>Patient</th>
                 <th>Phone No</th>
                 <th>Appointment Details</th>
-                <th>Patient Details</th>
                 <th>Status</th>
+                <th>Patient Details</th>
+                
             </tr>
-            <tr>
-                <td>10:00<br><span style="font-size: small; color: #3eb8bd;">10:30</span></td>
-                <td>15-01-2022</td>
-                <td>Tan Sri Abu Ali Bin Kassim</td>
-                <td>013-2225454</td>
-                <td>Stomach ache</td>
-                <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                <td><form action="#" required>
-                                 <select id="user" name="user">
-                                 <option value="Approve">Approved</option>
-                                 <option value="Reject">Rejected</option>
-                                 <option value="Finish">Finished</option>
-                     </select> </br></td>
-            </tr>
-            <tr>
-                <td>9:00<br><span style="font-size: small; color: #3eb8bd;">9:30</span></td>
-                <td>22-01-2022</td>
-                <td>Husni Azhar Bin Zul Muhammad</td>
-                <td>013-543543</td>
-                <td>Rehab check-up</td>
-                <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                <td><form action="#" required>
-                                 <select id="user" name="user">
-                                 <option value="Approve">Approved</option>
-                                 <option value="Reject" selected>Rejected</option>
-                                 <option value="Finish">Finished</option>
-                     </select> </br></td>
-            </tr>
-            <tr>
-                <td>15:00<br><span style="font-size: small; color: #3eb8bd;">15:30</span></td>
-                <td>15-01-2022</td>
-                <td>&nbsp&nbspHafifi Ismail Bin Hasif Haza</td>
-                <td>019-5756765</td>
-                <td>Influenza</td>
-                <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                <td><form action="#" required>
-                                 <select id="user" name="user">
-                                 <option value="Approve">Approved</option>
-                                 <option value="Reject">Rejected</option> 
-                                 <option value="Finish" selected>Finished</option>
-                     </select> </br></td>
-            </tr>
+            <%  while(rs.next()){ %>
+                <tr>
+                    <td><%= rs.getString(4)%></td>
+                    <td><%= rs.getString(3)%></td>
+                    <td><%= rs.getString(13)%></td>
+                    <td><%= rs.getString(16)%></td>
+                    <td><%= rs.getString(9)%></td>
+                    <%
+                        if(rs.getString(8).contentEquals("Approved"))
+                    {%>
+                            <td><div style="color: green;">Approved</div></td>
+                    <%}
+                        else if(rs.getString(8).contentEquals("Rejected"))
+                    {%>
+                            <td><div style="color: #807512;">Rejected</div></td>
+                    <%}
+                        else if(rs.getString(8).contentEquals("Finished"))
+                    {%>
+                            <td><div style="color: blue;">Finished</div></td>
+                    <% }else{ %>
+                            <td><div style="color: red;">Pending</div></td>
+                    <% } %>
+             
+                <form name="approval" method="post" action="approval.jsp">
+                    <input type="hidden" id="appointmentID" name="appointmentID" value=<%= rs.getString(1)%>>
+                    <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
+                </form>
+                </tr>
+
+            <% } %>
         </table>
-        
-        </br></br>
-         <a href="appointmentHistory.jsp" class="appointment-btn scrollto"><span class="d-none d-md-inline">View Appointment</span> History</a>
+        <br>
+        <form action="bookappointment.jsp" method="post">
+            <button type="submit">Add New Appointment</button>
+        </form>
     </div>
-  </section><!-- End Frequently Asked Questions Section -->
+  </section>
+
+
+
+  <%
+            statement.close();
+            con.close();
+        }
+        catch(Exception e)
+        {
+             out.println("wrong entry "+e);
+        }
+  %>
 
   <%@include file="footer.jsp" %>
-  
+
+  <%
+        }}
+        catch(Exception NullPointerException)
+        {%>
+          <section id="appointmentPatient" class="appointmentPatient">
+            <div class="container">
+              <div class="section-title">
+                <h2>Sorry, you have no access to this page !</h2>
+              </div>
+            </div>
+          </section>
+       <% } %>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -151,6 +197,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  
+
 </body>
 </html>
