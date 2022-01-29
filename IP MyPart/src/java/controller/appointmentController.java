@@ -45,6 +45,12 @@ public class appointmentController extends HttpServlet {
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pass = "";
+        String action=request.getParameter("action");
+        
+        
+        if(action.equals("ADD"))
+        {
+        
         String query1="SELECT * from department WHERE departmentID=?";
         String query = "INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink, userID,status) VALUES(?,?,?,?,?,?,?,?,?)";
         
@@ -124,6 +130,22 @@ public class appointmentController extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+        }
+        if (action.equals("DELETE"))
+            {   
+                String id=request.getParameter("id");
+                String query ="DELETE FROM appointment WHERE appointmentID='"+id+"'";
+                
+                Connection con = DriverManager.getConnection(url, userName, pass); //3- Establish connection
+                Statement st = con.createStatement();
+     
+                st.executeUpdate(query);
+        
+                st.close(); //7-close connection
+                con.close();
+		RequestDispatcher rd=request.getRequestDispatcher("/appointmentPatient.jsp");
+                rd.forward(request,response);
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

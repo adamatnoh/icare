@@ -37,7 +37,37 @@
       <!-- Template Main CSS File -->
       <link href="assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/vendor/bootstrap/*" type="text/css"/>
+      <style>
+       
+            .hijau
+            {
+                background-color: #4CAF50; 
+                color: white;
+                padding: 10px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 12px;
+                border-radius: 12px;
+            }
+            a.merah
+            {
+                background-color: #f44336; 
+                color: white;
+                padding: 10px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 12px;
+                border-radius: 12px;
+            }
+            .hijau:hover, .hijau:active {
+                background-color: greenyellow;
+            }
+            .merah:hover, .merah:active {
+                background-color: lightcoral;
+            }
+            
 
+        </style>
 
     </head>
     
@@ -87,6 +117,7 @@
                                 <th scope="col">Department</th>
                                 <th scope="col">Doctor's Name</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,6 +130,17 @@
                                 <td><%= resultset.getString(5)%></td>
                                 <td><%= resultset.getString(6)%></td>
                                 <td><%= resultset.getString(8)%></td>
+                                <td><%
+                                    if ("Pending".equals(resultset.getString(8)))
+                                    {%>
+                                        <a href="appointmentController?action=DELETE&id=<%= resultset.getString(1)%>" onclick="return confirm('Are you sure you want to cancel?')" class="hijau">Cancel Appointment</a>
+                                    <%}
+                                    else if ("Rejected".equals(resultset.getString(8)))
+                                    {%>
+                                        <a href="appointmentController?action=DELETE&id=<%= resultset.getString(1)%>" onclick="return confirm('Are you sure you want to delete?')" class="merah">Delete</a>
+                                    <%}   
+
+                                    %></td>
                             </tr>
                            <% } %>
                         </tbody>
