@@ -48,7 +48,7 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                 <li><a class="nav-link scrollto" href="manageDr.jsp">Doctor</a></li>
-                <li><a class="nav-link scrollto" href="manageDepartment.jsp">Department</a></li>
+                <li><a class="nav-link scrollto" href="viewDepartment.jsp">Department</a></li>
                 <li><a class="nav-link scrollto" href="signOutController">Sign Out</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>

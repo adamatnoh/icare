@@ -1,3 +1,9 @@
+<%-- 
+    Document   : viewDepartment
+    Created on : Jan 29, 2022, 11:30:36 PM
+    Author     : zulhu
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%ResultSet rs =null;%>
@@ -63,6 +69,29 @@
           color: white;
           padding: 15px;
         }
+      
+
+            a.hijau:hover, a.hijau:active {
+              background-color: red;
+            }
+            a.hijau
+            {
+                background-color: #4CAF50; 
+                color: white;
+                padding: 10px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 12px;
+                border-radius: 12px;
+            }
+
+            a.hijau:hover, a.hijau:active {
+                background-color: greenyellow;
+            }
+            .center {
+                    margin-left: auto;
+                    margin-right: auto;
+                  }
 
     </style>
 
@@ -88,7 +117,7 @@
 
         Statement statement = con.createStatement() ;
 
-        rs =statement.executeQuery("select doctor.*, department.* from doctor inner join department on doctor.departmentID=department.departmentID") ;
+        rs =statement.executeQuery("select * from department") ;
     %>
 
         <%@include file="navbar_admin.jsp" %>
@@ -99,59 +128,44 @@
         %>
         <div class="msg">Data saved successfully!</div>
         <% }else if("deleted".equals(msg)){ %>
-        <div class="msg" style="color:red">Account deleted successfully!</div>
+        <div class="msg" style="color:red">Department deleted successfully!</div>
         <% } %>
 
   <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>List of Doctors</h2>
+            <h2>List of Department</h2>
         </div>
 
-        <br>
+        <a  href="addDep.jsp" class="hijau">Add Department</a>
+        <br/><br/><br/>
 
-        <table width="100%">
+        <table class="table center">
+            <thead class="thead-dark">
+                
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Grade</th>
-                <th>Department</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Availability</th>
-                <th>Details</th>
+                <th colspan="2">Action</th>
+
             </tr>
+             </thead>
             <%  while(rs.next()){ %>
                 <tr>
                     <td><%= rs.getString(1)%></td>
                     <td><%= rs.getString(2)%></td>
-                    <td><%= rs.getString(3)%></td>
-                    <td><%= rs.getString(9)%></td>
-                    <td><%= rs.getString(4)%></td>
-                    <td><%= rs.getString(5)%></td>
-                    <%
-                        if(rs.getString(6).contentEquals("Yes"))
-                    {%>
-                            <td><div style="color: green;">Available</div></td>
-                    <%}
-                        else
-                    {%>
-                            <td><div style="color: red;">Not Available</div></td>
-                    <% } %>
-             
-                <form name="editDr" method="post" action="drProfile.jsp">
-                    <input type="hidden" id="doctorID" name="doctorID" value=<%= rs.getString(1)%>>
-                    <td><button type="submit" value="details"><i class="fas fa-user"></i>&nbsp&nbspmore</button></td>
-                </form>
+
+                    <td><a href="departmentController?action=EDIT&id=<%= rs.getString(1)%>" >Edit</a></td>
+                    <td><a href="departmentController?action=DELETE&id=<%= rs.getString(1)%>" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>
+ 
                 </tr>
 
             <% } %>
+             
+
         </table>
-        <br>
-        <form action="addDr.jsp" method="post">
-            <button type="submit">Add New Doctor</button>
-        </form>
+        
     </div>
   </section>
 
@@ -195,3 +209,4 @@
 
 </body>
 </html>
+

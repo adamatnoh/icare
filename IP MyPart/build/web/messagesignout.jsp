@@ -18,6 +18,13 @@
             color: white;
             padding: 15px;
           }
+          .msgwrong
+          {
+            text-align: center;
+            background-color: #3eb8bd;
+            color: red;
+            padding: 15px;
+          }
       </style>
     </head>
     <body>
@@ -27,6 +34,8 @@
             {
         %>
         <div class="msg">Successfully Signed Out!</div>
-        <% } %>
+        <% } else if("wrong".equals(msg)){ %>
+            <div class="msgwrong">Wrong Detail!</div>
+        <%}%>
     </body>
 </html>

@@ -55,7 +55,7 @@ public class paymentController extends HttpServlet {
         Connection con = DriverManager.getConnection(url, userName, pass); //3- Establish connection
         PreparedStatement st = con.prepareStatement(query);
         
-        int cardNo = Integer.parseInt(request.getParameter("cardNo"));
+        String cardNo = request.getParameter("cardNo");
         int cvv = Integer.parseInt(request.getParameter("cvv"));
         String expDate = request.getParameter("expDate");
         double total = Double.parseDouble(request.getParameter("total"));
@@ -63,7 +63,7 @@ public class paymentController extends HttpServlet {
 //        int appointmentID = 41; //change to session get id later
         
         st.setDouble(1, total);
-        st.setInt(2, cardNo);
+        st.setString(2, cardNo);
         st.setInt(3, cvv);
         st.setString(4, expDate);
         st.setInt(5, appointmentID);
