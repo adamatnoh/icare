@@ -51,6 +51,9 @@
     
     <%
         try{
+        if((Integer)session.getAttribute("loggedIn")==3){
+        
+        try{
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "icare";
         String url = "jdbc:mysql://localhost/" + dbName + "?";
@@ -122,6 +125,27 @@
   %>
   
   <%@include file="footer.jsp" %>
+  
+    <% }else{ %>
+    <section id="appointmentPatient" class="appointmentPatient">
+          <div class="container">
+            <div class="section-title">
+              <h2>Sorry, you have no access to this page !</h2>
+            </div>
+          </div>
+    </section>
+    <% 
+        }}
+        catch(Exception NullPointerException)
+        {%>
+          <section id="appointmentPatient" class="appointmentPatient">
+            <div class="container">
+              <div class="section-title">
+                <h2>Sorry, you have no access to this page !</h2>
+              </div>
+            </div>
+          </section>
+    <% } %>
   
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
