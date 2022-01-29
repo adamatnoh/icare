@@ -112,6 +112,7 @@
                     <br/>
 
                     <input type="hidden" id="appointmentID" name="appointmentID" value=<%= rs.getString(1)%>>
+                    <input type="hidden" id="userID" name="userID" value=<%= rs.getString(10)%>>
                     
                     <div class="text-center">
                         <button type="submit" class="appointment-btn scrollto">Save</button>

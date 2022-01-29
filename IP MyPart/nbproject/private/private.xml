@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/adamn/Documents/Programming/UTM/@Coding/Sem%205/IP/icare/IP%20MyPart/web/appointmentHistoryReceptionist.jsp</file>
-            <file>file:/C:/Users/adamn/Documents/Programming/UTM/@Coding/Sem%205/IP/icare/IP%20MyPart/src/java/controller/doctorController.java</file>
-            <file>file:/C:/Users/adamn/Documents/Programming/UTM/@Coding/Sem%205/IP/icare/IP%20MyPart/web/manageDr.jsp</file>
-            <file>file:/C:/Users/adamn/Documents/Programming/UTM/@Coding/Sem%205/IP/icare/IP%20MyPart/web/approval.jsp</file>
-            <file>file:/C:/Users/adamn/Documents/Programming/UTM/@Coding/Sem%205/IP/icare/IP%20MyPart/src/java/controller/appointmentController.java</file>
-            <file>file:/C:/Users/adamn/Documents/Programming/UTM/@Coding/Sem%205/IP/icare/IP%20MyPart/web/pendingAppointment.jsp</file>
-            <file>file:/C:/Users/adamn/Documents/Programming/UTM/@Coding/Sem%205/IP/icare/IP%20MyPart/src/java/controller/approvalController.java</file>
-            <file>file:/C:/Users/adamn/Documents/Programming/UTM/@Coding/Sem%205/IP/icare/IP%20MyPart/web/drProfile.jsp</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/onlineConsultation.jsp</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/messageSuccess.jsp</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/manageDr.jsp</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/drProfile.jsp</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/dashboard.jsp</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/login.jsp</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/index.jsp</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/src/java/controller/loginController.java</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/messagesignout.jsp</file>
+            <file>file:/C:/Users/hasifhafifi/Desktop/Sem%205/IP/icare/IP%20MyPart/web/onlinePayment.jsp</file>
         </group>
     </open-files>
 </project-private>

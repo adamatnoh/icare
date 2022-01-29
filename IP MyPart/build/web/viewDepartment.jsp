@@ -151,9 +151,10 @@
 
             </tr>
              </thead>
-            <%  while(rs.next()){ %>
+            <%  int i=1;
+                while(rs.next()){ %>
                 <tr>
-                    <td><%= rs.getString(1)%></td>
+                    <td><%= i++ %></td>
                     <td><%= rs.getString(2)%></td>
 
                     <td><a href="departmentController?action=EDIT&id=<%= rs.getString(1)%>" >Edit</a></td>

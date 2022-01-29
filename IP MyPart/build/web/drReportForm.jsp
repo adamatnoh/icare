@@ -57,9 +57,13 @@
 
 <body>
 
-    <%      
+    <%  
+        
+        String apptID = request.getParameter("appointmentID");
+        String userID = request.getParameter("userID");
+        
         try{
-        if((Integer)session.getAttribute("loggedIn")==3){    
+        if((Integer)session.getAttribute("loggedIn")==2){    
     %>
     
   <%@include file="navbar_receptionist.jsp" %>
@@ -75,9 +79,9 @@
         <div class="bungkus">
             <form name="PReport" method="post" action="reportController">
                 <b>Patient ID:</b>               
-                <input type="text" name="userID" class="form-control" placeholder="patient id" required/><br>
+                <input type="text" name="userID" class="form-control" value="<%=userID%>" readonly/><br>
                 <b>Appointment ID:</b>               
-                <input type="text" name="appointmentID" class="form-control" placeholder="appointment id" required/><br>
+                <input type="text" name="appointmentID" class="form-control" value="<%=apptID%>" readonly/><br>
                 <b>Subject:</b> 
                 <input type="text" name="subject" class="form-control" placeholder="appointment subject" required/><br>
                 <b>Appointment description:</b>

@@ -41,6 +41,7 @@ public class apprController extends HttpServlet {
         String userName = "root";
         String pass = "";
         String id = request.getParameter("appointmentID");
+        String userID = request.getParameter("userID");
         
         String query = ("UPDATE appointment SET status=? WHERE appointmentID="+id);
         
@@ -63,7 +64,13 @@ public class apprController extends HttpServlet {
         con.close();
         
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect ("pendingAppointment.jsp?msg=successful");
+            if(status.equals("Finished"))
+            {
+                response.sendRedirect ("drReportForm.jsp?userID="+userID+"&appointmentID="+id);
+            }
+            else{
+                response.sendRedirect ("pendingAppointment.jsp?msg=successful");
+            }
         }
     }
 

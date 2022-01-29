@@ -68,7 +68,7 @@
 
                         Statement statementt = co.createStatement() ;   
                         
-                        resultsett = statementt.executeQuery("select * from appointment where status='pending' and userID="+uid) ;
+                        resultsett = statementt.executeQuery("select * from appointment where status='Pending' and userID="+uid) ;
                         if(resultsett.next())
                         {
                             String dt = resultsett.getString(3);

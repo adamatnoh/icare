@@ -154,9 +154,6 @@
             <% } %>
         </table>
         <br>
-        <form action="bookappointment.jsp" method="post">
-            <button type="submit">Add New Appointment</button>
-        </form>
     </div>
   </section>
 

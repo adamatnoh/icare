@@ -139,8 +139,8 @@
                             <h6>Availability</h6>
                             <select name="availability" id="availability" class="form-select">
                               <option value="">Select Availability</option>
-                              <option value="yes">Available</option>
-                              <option value="no">Not Available</option>
+                              <option value="Yes">Available</option>
+                              <option value="No">Not Available</option>
                             </select>
                           </div>
                           <div class="row">

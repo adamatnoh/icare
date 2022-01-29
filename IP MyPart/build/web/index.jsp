@@ -62,11 +62,21 @@
         }
         
         .mid{
-            margin: auto;
+            margin-right: auto !important;
+            margin-left: auto !important;
         }
         
         .box{
             padding-left: 150px;
+        }
+        
+        .box2{
+            padding-left: 500px;
+        }
+        
+        .box2 img{
+            width: 1100px;
+            height: 650px;
         }
     </style>
     </head>
@@ -113,11 +123,17 @@
         <%@include file="messageSuccess.jsp" %>
         <%--@include file="dashboard.jsp" --%>
         </br></br>
+        
+        <div class="mid box2">
+            <img src="assets/img/slide/slide-1.jpg" alt="dr">
+        </div>
+        <br><br>
         <div class="section-title">
             <h2>Doctor List</h2>
         </div>
        
         <%  while(rs.next()){ %>
+        <% if(rs.getString(6).contentEquals("Yes")){ %>
         <div class="mid box">
             <div1 class="dr1"> 
                 <div class="mid">
@@ -142,6 +158,7 @@
                 </div>
             </div1>
         </div>
+        <% } %>
         <% } %>
         
         <%

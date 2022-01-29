@@ -59,6 +59,7 @@ public class reportController extends HttpServlet {
         String userID = request.getParameter("userID");
         String subject = request.getParameter("subject");
         String patientCondition = request.getParameter("PCondition");
+        String nextApp = request.getParameter("nxtApp");
         String nextAppointmentDate = request.getParameter("nxtApptD");
         String appointmentID = request.getParameter("appointmentID");
         
@@ -78,29 +79,31 @@ public class reportController extends HttpServlet {
         ResultSet rs =statementt.executeQuery("select * from appointment where userID="+userID) ;
         rs.next();
         
-        PreparedStatement st2 = con.prepareStatement("INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink, userID, status) VALUES(?,?,?,?,?,?,?,?,?)");
-        
-        String appointdate = request.getParameter("nxtApptD");
-        String appointtime = rs.getString(4);
-        String appointdepartment = rs.getString(5);
-        String appointdoctor = rs.getString(6);
-        String message = request.getParameter("details");
-        String appointmentType = "appointment";
-        String platform = null;
-        
-        st2.setString(1, appointdate);
-        st2.setString(2, appointtime);
-        st2.setString(3, appointdepartment);
-        st2.setString(4, appointdoctor);
-        st2.setString(5, message);
-        st2.setString(6, appointmentType);
-        st2.setString(7, platform);
-        st2.setInt(8, Integer.parseInt(userID));
-        st2.setString(9, "pending");
-        
-        st2.executeUpdate(); 
-        
-        st2.close(); //7-close connection
+        if(nextApp.equals("yes")){
+            PreparedStatement st2 = con.prepareStatement("INSERT INTO appointment(appointmentDate, appointmentTime, appointmentDepartment, appointmentDr, message, appointmentType, appointmentLink, userID, status) VALUES(?,?,?,?,?,?,?,?,?)");
+
+            String appointdate = request.getParameter("nxtApptD");
+            String appointtime = rs.getString(4);
+            String appointdepartment = rs.getString(5);
+            String appointdoctor = rs.getString(6);
+            String message = request.getParameter("details");
+            String appointmentType = "appointment";
+            String platform = null;
+
+            st2.setString(1, appointdate);
+            st2.setString(2, appointtime);
+            st2.setString(3, appointdepartment);
+            st2.setString(4, appointdoctor);
+            st2.setString(5, message);
+            st2.setString(6, appointmentType);
+            st2.setString(7, platform);
+            st2.setInt(8, Integer.parseInt(userID));
+            st2.setString(9, "Pending");
+
+            st2.executeUpdate(); 
+
+            st2.close(); //7-close connection
+        }
         con.close();
   
         try (PrintWriter out = response.getWriter()) {

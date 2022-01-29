@@ -106,14 +106,14 @@
                 <input type="email" name="email" class="form-control" placeholder="Doctor Email" required/><br>
                 <b>Mobile:</b>
                 <input type="text" name="mobile" class="form-control" placeholder="Doctor Phone Number" required/><br>
-                <label for="appointdepartment">Appointment Department</label>
+                <label for="appointdepartment">Department :</label>
                 <select name="appointdepartment" class="btn btn-success dropdown-toggle">  
                     <%  while(resultset.next()){ %>
                         <option><%= resultset.getString(2)%></option> <!--taking scnd column in table-->
                     <% }%>
                 </select>
                 
-                <input type="text" name="available" class="form-control" value="yes" hidden/><br>
+                <input type="text" name="available" class="form-control" value="Yes" hidden/><br>
                 <button type="submit" name="submit" id="button"><span style="color: #3eb8bd;"><i class="fas fa-save"></i></span>&nbsp&nbspSave</button>
             </form>  
         </div>
