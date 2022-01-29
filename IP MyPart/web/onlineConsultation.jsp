@@ -96,7 +96,6 @@
                                 <option value="googleMeet">Google Meet</option>
                                 <option value="webex">Webex</option>
                                 <option value="zoom">Zoom</option>
-                                <option value="whatsapp">Whatsapp</option>
                             </select>
 <!--                            <input type="text" name="platform" class="form-control" id="platform">-->
                         </div> 

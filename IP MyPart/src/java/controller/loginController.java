@@ -62,12 +62,6 @@ public class loginController extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet loginController</title>");            
-            out.println("</head>");
-            out.println("<body>");
             if(rs.next())
             {
 //                rs.next();
@@ -89,11 +83,8 @@ public class loginController extends HttpServlet {
             }
             else{
                 out.println("<h1>Wrong detail!</h1>");
-                RequestDispatcher rd1 = request.getRequestDispatcher("login.jsp");
-                rd1.include(request, response);
+                response.sendRedirect ("login.jsp?msg=wrong");
             }
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 

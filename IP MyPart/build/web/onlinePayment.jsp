@@ -36,6 +36,43 @@
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/payment.css">
+        
+        <script>
+            function validate()
+            {
+                if(document.payForm.cardNo.value == "")
+                {
+                    alert( "Please provide your card number!" );
+                    document.payForm.cardNo.focus() ;
+                    return false;
+                }
+                if(document.payForm.cvv.value == "")
+                {
+                    alert( "Please provide your card cvv number!" );
+                    document.payForm.cvv.focus() ;
+                    return false;
+                }
+                if(document.payForm.expDate.value == "")
+                {
+                    alert( "Please provide your card expiry date!" );
+                    document.payForm.expDate.focus() ;
+                    return false;
+                }
+                if(document.payForm.cardNo.value.length != 12)
+                {
+                    alert( "Please check your card number!" );
+                    document.payForm.cardNo.focus() ;
+                    return false;
+                }
+                if(document.payForm.cvv.value.length != 3)
+                {
+                    alert( "Please check your card cvv number!" );
+                    document.payForm.cvv.focus() ;
+                    return false;
+                }
+            }
+        </script>    
+        
     </head>
     <body>
         <%
@@ -90,15 +127,15 @@
                     <div class="childd boxx2">
                         <b>Pay using Credit/Debit cards:</b>
                         <br><br>
-                        <form action="paymentController" method="post">
+                        <form action="paymentController" method="post" name="payForm" onsubmit="return(validate());">
                             <label for="cardNo">Card Number:</label>
                             <br>
-                            <input type="text" name="cardNo" class="form-control" required/>
+                            <input type="number" name="cardNo" class="form-control" placeholder="eg: 123456789999" required/>
                             
                             <br>
                             <label for="cvv">CVV Number:</label>
                             <br>
-                            <input type="text" name="cvv" class="form-control" required/>
+                            <input type="number" name="cvv" class="form-control" placeholder="eg: 123" required/>
                             
                             <br>
                             <label for="expDate">Expiry Date:</label>
