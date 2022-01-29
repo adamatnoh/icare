@@ -134,6 +134,16 @@ public class appointmentController extends HttpServlet {
         if (action.equals("DELETE"))
             {   
                 String id=request.getParameter("id");
+                String type=request.getParameter("type");
+                if(type.equals("online"))
+                {
+                  String query ="DELETE FROM payment WHERE appointmentID='"+id+"'";
+                  Connection con = DriverManager.getConnection(url, userName, pass); //3- Establish connection
+                  Statement st = con.createStatement();
+     
+                  st.executeUpdate(query);
+                }
+
                 String query ="DELETE FROM appointment WHERE appointmentID='"+id+"'";
                 
                 Connection con = DriverManager.getConnection(url, userName, pass); //3- Establish connection
@@ -143,9 +153,20 @@ public class appointmentController extends HttpServlet {
         
                 st.close(); //7-close connection
                 con.close();
+                
+                if(type.equals("online"))
+                {
+                    response.sendRedirect ("appointmentPatient.jsp?msg=refund");
+                    
+                }
+                
+                else
+                {
 		RequestDispatcher rd=request.getRequestDispatcher("/appointmentPatient.jsp");
                 rd.forward(request,response);
+                }
             }
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

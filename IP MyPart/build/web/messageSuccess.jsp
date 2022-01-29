@@ -27,6 +27,8 @@
             {
         %>
         <div class="msg">Data saved successfully!</div>
-        <% } %>
+        <% }else if("refund".equals(msg)){ %>
+            <div class="msg">Your money will be refunded to your bank. :)</div>
+        <%}%>
     </body>
 </html>
