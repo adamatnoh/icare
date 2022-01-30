@@ -140,7 +140,7 @@
                                     <%}
                                     else if ("Rejected".equals(resultset.getString(8)))
                                     {%>
-                                        <a href="appointmentController?action=DELETE&id=<%= resultset.getString(1)%>" onclick="return confirm('Are you sure you want to delete?')" class="merah">Delete</a>
+                                        <a href="appointmentController?action=DELETE&id=<%= resultset.getString(1)%>&type=<%= resultset.getString(2)%>" onclick="return confirm('Are you sure you want to delete?')" class="merah">Delete</a>
                                     <%}   
 
                                     %></td>
