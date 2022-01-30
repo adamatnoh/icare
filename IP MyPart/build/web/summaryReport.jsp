@@ -2,7 +2,6 @@
 <%@ page import="java.sql.*" %>
 <%ResultSet rs =null;%>
 <%ResultSet rs1 =null;%>
-<%ResultSet rs2 =null;%>
 <%ResultSet rsm =null;%>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,6 +115,7 @@
             ++numOfGuest;
         }
         rsm =statement.executeQuery("select departmentID, count(doctorID)  from doctor group by departmentID order by count(doctorID) desc") ;
+  
         
     %>
     <%@include file="navbar_admin.jsp" %><br/>
@@ -163,15 +163,9 @@
                        <%}%>
               </p>
             </div>
-              <!--
+              
           </div>
-          <div class="card text-body bg-info mb-3 displayed" style="max-width: 18rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-              <h5 class="card-title">Info card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </div>
+          <!--
           <div class="card bg-light mb-3 displayed" style="max-width: 18rem;">
             <div class="card-header">Header</div>
             <div class="card-body">
@@ -184,8 +178,8 @@
             <div class="card-body">
               <h5 class="card-title">Dark card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>-->
-          </div>
+            </div>
+          </div>-->
 
 
 
